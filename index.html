@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Raj Khatri — Data Science &amp; Applied AI</title>
-<meta name="description" content="Raj Khatri — data science and applied AI. Statistical root-cause analysis on real manufacturing data, verified on the shop floor, plus production backend work. Available for remote internships now.">
+<meta name="description" content="Raj Khatri — data science and applied AI. Statistical root-cause analysis on real manufacturing data, verified on the shop floor, a deployed governed RAG system, and production backend work. Full-time internship from Jan 2027, full-time from Jun 2027.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Raj Khatri — Data Science &amp; Applied AI">
-<meta property="og:description" content="Statistical root-cause analysis on real manufacturing data, verified on the shop floor. Available for remote internships now, full-time from June 2027.">
+<meta property="og:description" content="Deployed a governed RAG system for regulatory search, plus statistical root-cause analysis on real manufacturing data. Full-time internship from Jan 2027; full-time, immediate joiner from Jun 2027.">
 <meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#0B1120">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230B1120'/%3E%3Ccircle cx='16' cy='16' r='11' fill='none' stroke='%23D9A24B' stroke-width='1.5' opacity='.7'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%23D9A24B'/%3E%3C/svg%3E">
@@ -187,18 +187,6 @@ body.lock{ overflow:hidden; }
   max-width:22ch; margin:0 0 var(--s4);
 }
 .lede em{ font-style:normal; color:var(--brass); }
-
-.ready{
-  display:inline-flex; align-items:center; gap:10px; flex-wrap:wrap;
-  font-family:var(--mono); font-size:12.5px; color:var(--text);
-  padding:10px 16px; margin:0 0 var(--s3);
-  border:1px solid var(--edge); border-radius:999px; background:var(--raised);
-}
-.ready b{ color:var(--green); font-weight:500; }
-.pip{ position:relative; width:7px; height:7px; border-radius:50%; background:var(--green); flex:none; }
-.pip::after{ content:""; position:absolute; inset:0; border-radius:50%; background:var(--green); animation:pip 2.8s ease-out infinite; }
-@keyframes pip{ 0%{ transform:scale(1); opacity:.55; } 70%,100%{ transform:scale(3.2); opacity:0; } }
-@media (prefers-reduced-motion:reduce){ .pip::after{ animation:none; } }
 
 .roles{ font-family:var(--mono); font-size:12.5px; line-height:2; color:var(--soft); margin:0 0 var(--s4); }
 .roles b{ color:var(--text); font-weight:400; }
@@ -381,6 +369,59 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
   .stage{ break-inside:avoid; }
   .stage::before{ color:#eee; }
 }
+
+/* ── system diagrams (GenAI section) ──────────────────────────────── */
+.dia{ width:100%; height:auto; background:var(--raised); border:1px solid var(--edge); border-radius:12px; padding:0; }
+.pg-cap,.gv-cap{ font-family:var(--mono); font-size:9.5px; fill:var(--brass); letter-spacing:.16em; }
+.pg-box{ fill:var(--raised-2); stroke:var(--edge); stroke-width:1; }
+.pg-box.hot{ fill:rgba(217,162,75,.1); stroke:var(--brass); }
+.pg-t{ font-family:var(--mono); font-size:9px; fill:var(--soft); letter-spacing:.1em; }
+.pg-t.hot{ fill:var(--brass); }
+.pg-arrow{ stroke:var(--rule); stroke-width:1.2; fill:none; }
+.pg-brace{ stroke:var(--brass); stroke-width:1.2; opacity:.5; }
+.pg-note{ font-family:var(--mono); font-size:8.5px; fill:var(--brass); letter-spacing:.13em; }
+.pg-note.dim{ fill:var(--faint); letter-spacing:.06em; }
+.gv-name{ font-family:var(--mono); font-size:9px; fill:var(--text); letter-spacing:.06em; }
+.gv-track{ fill:var(--raised-2); }
+.gv-bar.veto{ fill:var(--faint); opacity:.55; }
+.gv-bar.gold{ fill:var(--brass); }
+.gv-bar.bronze{ fill:var(--rule); }
+.gv-score{ font-family:var(--mono); font-size:9px; fill:var(--soft); }
+.gv-status{ font-family:var(--mono); font-size:8px; letter-spacing:.12em; fill:var(--faint); }
+.gv-status.veto{ fill:#C2708A; }
+.gv-status.gold{ fill:var(--brass); }
+.gv-strike{ stroke:#C2708A; stroke-width:1.4; }
+.dia-pair{ display:grid; grid-template-columns:1fr; gap:var(--s3); margin-bottom:var(--s5); }
+
+/* numbered points — used where a stage has no diagram of its own */
+.points{ list-style:none; counter-reset:pt; margin:var(--s5) 0 0; padding:0; }
+.points li{ counter-increment:pt; position:relative; padding:var(--s4) 0 var(--s4) 64px; border-top:1px solid var(--edge); }
+.points li::before{
+  content:counter(pt,decimal-leading-zero);
+  position:absolute; left:0; top:var(--s4);
+  font-family:var(--mono); font-size:1.5rem; font-weight:500; line-height:1;
+  color:var(--brass); opacity:.75;
+}
+.points .step{ display:block; font-family:var(--mono); font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--brass); margin-bottom:10px; }
+.points p{ font-size:1.05rem; line-height:1.68; margin:0; max-width:64ch; color:var(--text); }
+@media (max-width:640px){
+  .points li{ padding:var(--s3) 0 var(--s3) 44px; }
+  .points li::before{ font-size:1.2rem; top:var(--s3); }
+}
+/* the system section's single diagram stage: no numeric watermark, so it
+   cannot be confused with the investigation's 01–04 sequence */
+.stage[data-n="!"]::before{ content:none; }
+
+.thesis{
+  font-size:1.02rem; line-height:1.6; color:var(--soft);
+  max-width:46ch; margin:0 0 var(--s4);
+  padding-left:16px; border-left:2px solid var(--edge);
+}
+.band-label{
+  font-family:var(--mono); font-size:9.5px; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--faint); margin:0; padding:var(--s2) 0 0;
+}
+.roles b{ color:var(--brass); font-weight:500; }
 </style>
 
 </head>
@@ -408,6 +449,7 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
       <nav aria-label="Sections">
         <ul class="nav">
           <li><a href="#about">About</a></li>
+          <li><a href="#system">System</a></li>
           <li><a href="#investigation">Investigation</a></li>
           <li><a href="#work">Work</a></li>
           <li><a href="#next">Next</a></li>
@@ -428,6 +470,7 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
 <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Menu">
   <button class="sheet-x" id="sheetX" aria-label="Close menu"><svg class="icon"><use href="#i-x"/></svg></button>
   <a href="#about">About</a>
+  <a href="#system">System</a>
   <a href="#investigation">Investigation</a>
   <a href="#work">Work</a>
   <a href="#next">Next</a>
@@ -447,21 +490,21 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
   <section class="hero">
     <div class="shell hero-in">
       <div>
-        <p class="eyebrow up">Data Science &amp; Applied AI</p>
+        <p class="eyebrow up">Applied AI &middot; Governance &amp; Retrieval</p>
         <h1 class="up a1">Raj Khatri</h1>
-        <p class="lede up a1">I find the <em>signal</em> in messy operational data — then build the system that acts on it.</p>
-        <p class="ready up a2"><span class="pip"></span> Available for <b>remote internships now</b> · Full-time from <b>June 2027</b></p>
-        <p class="roles up a3">
+        <p class="lede up a1">I build retrieval systems that can prove <em>where every answer came from</em> — and refuse when they can't.</p>
+        <p class="thesis up a2">Applied AI and backend engineer with an industrial engineering background. Not three careers — one habit: assume the output is wrong until something outside the model says otherwise.</p>
+        <p class="roles up a2">
           <b>Backend Developer</b> · Voldebug Innovations — current<br>
           <b>Data Analytics Intern</b> · Tata Motors, Pantnagar · Jul–Aug 2026<br>
-          B.Tech Industrial &amp; Production Engineering · Class of 2027 · Uttarakhand, India
+          B.Tech Industrial &amp; Production Engineering · Class of 2027 · Uttarakhand, India<br>
+          <b>Available:</b> full-time internship from Jan 2027 &middot; full-time from Jun 2027
         </p>
-        <div class="acts up a4">
-          <a class="btn btn-fill" href="#investigation">Read the investigation</a>
+        <div class="acts up a3">
+          <a class="btn btn-fill" href="#system">See the system</a>
           <a class="btn btn-ghost" href="resume.pdf" target="_blank" rel="noopener"><svg class="icon"><use href="#i-doc"/></svg> Résumé</a>
           <a class="btn btn-ghost" href="https://www.linkedin.com/in/rajkhatri2295/" target="_blank" rel="noopener"><svg class="icon"><use href="#i-in"/></svg> LinkedIn</a>
-          <a class="btn btn-ghost" href="https://github.com/rajkhatri08" target="_blank" rel="noopener"><svg class="icon"><use href="#i-gh"/></svg> GitHub</a>
-          <a class="btn btn-ghost" href="resume.pdf" target="_blank" rel="noopener"><svg class="icon"><use href="#i-doc"/></svg> Résumé (PDF)</a>
+          <a class="btn btn-ghost" href="https://compliance-dashboard-omega-amber.vercel.app" target="_blank" rel="noopener"><svg class="icon"><use href="#i-out"/></svg> Live dashboard</a>
         </div>
       </div>
       <div class="up a3"><svg class="hero-chart" viewBox="0 0 720 380" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -490,17 +533,18 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
   <!-- ═══ INSTRUMENT BAND ═══ -->
   <div class="band">
     <div class="shell">
+      <p class="band-label">From the deployed governance system &mdash; section 02</p>
       <div class="band-n">
-        <div class="n"><b>~300</b><span>Inspection points analysed</span></div>
-        <div class="n"><b>10</b><span>Quality metrics tracked</span></div>
-        <div class="n"><b>20+</b><span>Section technical report</span></div>
-        <div class="n"><b>0</b><span>Production stoppages needed</span></div>
-        <div class="n"><b>3</b><span>User roles shipped</span></div>
+        <div class="n"><b>78&rarr;95%</b><span>Retrieval accuracy, labelled set</span></div>
+        <div class="n"><b>23</b><span>Hand-labelled edge cases</span></div>
+        <div class="n"><b>70</b><span>Thresholds swept, then cut</span></div>
+        <div class="n"><b>96%</b><span>Deploy footprint reduced</span></div>
+        <div class="n"><b>100%</b><span>Answers carry provenance</span></div>
       </div>
       <div class="kit">
-        <span class="pill">Python</span><span class="pill">SQL</span><span class="pill">PostgreSQL</span><span class="pill">Supabase</span><span class="pill">REST APIs</span><span class="pill">Next.js</span><span class="pill">Statistical Analysis</span>
+        <span class="pill">Python</span><span class="pill">SQL</span><span class="pill">FastAPI</span><span class="pill">RAG</span><span class="pill">ChromaDB</span><span class="pill">PostgreSQL</span><span class="pill">Next.js</span><span class="pill">Statistical Analysis</span>
         <span class="kit-sep">building with &rarr;</span>
-        <span class="pill next">FastAPI</span><span class="pill next">RAG</span><span class="pill next">Vector DBs</span><span class="pill next">Agents</span>
+        <span class="pill next">Agents</span><span class="pill next">Tool use</span>
       </div>
     </div>
   </div>
@@ -522,7 +566,7 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
           <footer><b>Sunil Kumar</b>Manufacturing Operations, Tata Motors Limited<br>Senior on the line, outside Raj's reporting chain</footer>
         </blockquote>
       </div>
-      <a class="verify-link tl" href="https://www.linkedin.com/in/rajkhatri2295/" target="_blank" rel="noopener">Verify both on LinkedIn <svg class="icon"><use href="#i-out"/></svg></a>
+      <a class="verify-link tl" href="https://www.linkedin.com/in/rajkhatri2295/details/recommendations/" target="_blank" rel="noopener">Read both in full on LinkedIn <svg class="icon"><use href="#i-out"/></svg></a>
     </div>
   </div>
 
@@ -536,22 +580,84 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
           <h2>What I actually do</h2>
         </div>
         <div class="copy">
-          <p>I'm a final-year Industrial and Production Engineering student who ended up specialising in something adjacent to the degree: pulling <strong>defensible conclusions out of messy, real-world data</strong> — and building the systems that put those conclusions in front of the people who have to act on them.</p>
+          <p>The through-line across everything below is reliability: I build systems whose outputs can be traced, checked and defended — a retrieval pipeline that refuses to answer from an expired policy, or a statistical finding that had to agree with a physical gauge before I'd present it.</p>
           <p>That started on a weld shop floor at Tata Motors, tracing a long-standing manufacturing defect to its source with statistical analysis. It didn't stop at the analysis. I went and measured the parts myself, because a finding that hasn't survived contact with the physical world isn't a finding yet.</p>
           <p>Since then I've stayed on at Voldebug as a <strong>backend developer</strong>, building the data layer and APIs behind a school-facing product that real teachers and students use — schema design, auth, and the endpoints the front end depends on, shipped alongside final-year coursework.</p>
-          <p>I'm working toward <strong>data science and applied AI roles</strong> — specifically retrieval and reasoning systems over industrial and operational documents, where the domain knowledge I already have is the difference between a demo and something a quality engineer would trust.</p>
+          <p>Most recently I designed and deployed <strong>Source-Governed RAG</strong> — a retrieval system over regulatory documents where a source's approval status and review date can veto an otherwise perfect semantic match. It came from the same instinct as the Tata work: a confident answer is worthless if you can't say where it came from, or whether that source is still valid.</p>
+          <p>I'm working toward <strong>data science and applied AI roles</strong> — retrieval and reasoning systems over industrial, regulatory and operational documents, where domain knowledge is the difference between a demo and something an engineer would actually trust.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ 02 INVESTIGATION ═══ -->
-  <section class="sec" id="investigation">
+  <!-- ═══ 02 THE SYSTEM ═══ -->
+  <section class="sec" id="system">
     <div class="shell sec-in">
       <div class="num">02</div>
       <div>
         <div class="hd">
-          <p class="eyebrow">Investigation</p>
+          <p class="eyebrow">Deployed &middot; RAG &amp; governance</p>
+          <h2>Governed RAG: an answer you can audit</h2>
+          <p class="sub">Source-Governed RAG — a retrieval system over regulatory documents where a source's approval status and review date can veto an otherwise perfect semantic match.</p>
+        </div>
+        <p class="run">AUG 2026 &nbsp;·&nbsp; SOLO BUILD &nbsp;·&nbsp; PYTHON &nbsp;·&nbsp; FASTAPI &nbsp;·&nbsp; CHROMADB &nbsp;·&nbsp; POSTGRESQL &nbsp;·&nbsp; NEXT.JS<br>384-DIMENSIONAL SENTENCE EMBEDDINGS SERVED VIA ONNX RUNTIME &nbsp;·&nbsp; DEPLOYED ACROSS THREE SERVICES</p>
+
+        <div class="dia-pair"><svg class="dia" viewBox="0 0 560 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Six-stage query pipeline: ingest, embed, retrieve, govern, generate, audit — each stage independently testable">
+  <text class="pg-cap" x="20" y="24">SIX-STAGE QUERY PIPELINE · EACH STAGE INDEPENDENTLY TESTABLE</text>
+  <rect class="pg-box" x="20" y="44" width="78" height="42" rx="6"/><text class="pg-t" x="59.0" y="69" text-anchor="middle">INGEST</text><path class="pg-arrow" d="M101 65 L111 65 M107 61.5 L111 65 L107 68.5"/><rect class="pg-box" x="114" y="44" width="78" height="42" rx="6"/><text class="pg-t" x="153.0" y="69" text-anchor="middle">EMBED</text><path class="pg-arrow" d="M195 65 L205 65 M201 61.5 L205 65 L201 68.5"/><rect class="pg-box" x="208" y="44" width="78" height="42" rx="6"/><text class="pg-t" x="247.0" y="69" text-anchor="middle">RETRIEVE</text><path class="pg-arrow" d="M289 65 L299 65 M295 61.5 L299 65 L295 68.5"/><rect class="pg-box hot" x="302" y="44" width="78" height="42" rx="6"/><text class="pg-t hot" x="341.0" y="69" text-anchor="middle">GOVERN</text><path class="pg-arrow" d="M383 65 L393 65 M389 61.5 L393 65 L389 68.5"/><rect class="pg-box" x="396" y="44" width="78" height="42" rx="6"/><text class="pg-t" x="435.0" y="69" text-anchor="middle">GENERATE</text><path class="pg-arrow" d="M477 65 L487 65 M483 61.5 L487 65 L483 68.5"/><rect class="pg-box hot" x="490" y="44" width="78" height="42" rx="6"/><text class="pg-t hot" x="529.0" y="69" text-anchor="middle">AUDIT</text>
+  <line class="pg-brace" x1="272" y1="96" x2="380" y2="96"/>
+  <text class="pg-note" x="326" y="114" text-anchor="middle">TRUST DECISIONS</text>
+  <text class="pg-note dim" x="326" y="128" text-anchor="middle">recorded, not inferred</text>
+</svg></div>
+
+        <div class="stage" data-n="!">
+          <div class="viz"><svg class="dia" viewBox="0 0 560 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Governance veto: the highest-similarity source is refused because it is expired; a lower-scoring approved source is used instead">
+  <text class="gv-cap" x="20" y="24">SIMILARITY RANKS. GOVERNANCE DECIDES.</text>
+  <text class="gv-name" x="20" y="56">INTERNAL POLICY v3</text><rect class="gv-track" x="196" y="43" width="300" height="13" rx="3"/><rect class="gv-bar veto" x="196" y="43" width="282" height="13" rx="3"/><text class="gv-score" x="504" y="55">0.94</text><text class="gv-status veto" x="196" y="74">EXPIRED · REVIEW LAPSED</text><line class="gv-strike" x1="196" y1="49" x2="478" y2="49"/><text class="gv-name" x="20" y="104">REGULATION 2026/14</text><rect class="gv-track" x="196" y="91" width="300" height="13" rx="3"/><rect class="gv-bar gold" x="196" y="91" width="243" height="13" rx="3"/><text class="gv-score" x="504" y="103">0.81</text><text class="gv-status gold" x="196" y="122">APPROVED · CURRENT</text><text class="gv-name" x="20" y="152">GUIDANCE NOTE (DRAFT)</text><rect class="gv-track" x="196" y="139" width="300" height="13" rx="3"/><rect class="gv-bar bronze" x="196" y="139" width="231" height="13" rx="3"/><text class="gv-score" x="504" y="151">0.77</text><text class="gv-status bronze" x="196" y="170">UNAPPROVED SOURCE</text>
+</svg></div>
+          <div class="txt">
+            <span class="step">THE FAILURE MODE</span>
+            <p>Semantic search will confidently answer from an expired internal policy if it happens to be the closest match. I reproduced exactly that: a lapsed document outranking current regulation on similarity, returning a deadline that would place an organisation in breach.</p>
+            <p style="margin-top:14px">So approval status and review date are enforced as a <strong style="color:var(--text)">veto, not a weighted score</strong> — a strong semantic match cannot outrank a failed trust check. Results tier gold, silver, bronze; the best-scoring match in the whole evaluation set is still bronze, because its source was never approved.</p>
+          </div>
+        </div>
+
+        <ol class="points">
+          <li>
+            <span class="step">Retrieval quality</span>
+            <p>Accuracy went from <strong style="color:var(--text)">78% to 95%</strong> on the labelled set by replacing fixed-size character chunking with document-structure chunking. I found the cause by reading the retrieved text rather than tuning prompts: character windows were truncating enumerated legal clauses before the subsection containing the answer. Regex lookahead splitting now keeps whole provisions with their headings intact.</p>
+          </li>
+          <li>
+            <span class="step">Evaluation</span>
+            <p>A 23-question hand-labelled set — deliberately small and adversarial rather than broad, spanning answerable, out-of-corpus and conflicted cases with plausible negatives built to provoke false confidence. <strong style="color:var(--text)">It's an edge-case audit, not a scale benchmark</strong>, and the accuracy figures should be read that way; the next step is running it against a larger uncurated corpus.</p>
+            <p style="margin-top:14px">Within that set I swept 70 similarity thresholds, measured a 73.9% accuracy ceiling for distance-based confidence, and <strong style="color:var(--text)">removed the feature</strong> rather than ship an unreliable signal. Grounding was verified by querying a fact the model knows but the corpus doesn't, and confirming refusal.</p>
+          </li>
+          <li>
+            <span class="step">Audit trail</span>
+            <p>Every request writes timestamp, tier, reasoning, sources, distances and warnings to PostgreSQL, so any decision is reconstructable months later. Document text lives on disk while all governance state lives in the database — one source of truth for trust decisions. Six-endpoint FastAPI service with schema validation and generated OpenAPI docs.</p>
+          </li>
+          <li>
+            <span class="step">Running it in production</span>
+            <p>First deploy failed: 2&nbsp;GB of GPU libraries on a 512&nbsp;MB instance. Swapping to an equivalent ONNX runtime cut the footprint by roughly <strong style="color:var(--text)">96%</strong>, verified behaviour-identical before shipping. Evaluation runtime went from <strong style="color:var(--text)">4.5 minutes to 2 seconds</strong> through result caching keyed to invalidate on configuration change. Audit logging moved off the filesystem to PostgreSQL after ephemeral instances erased runtime writes on restart, and infrastructure failures are separated from model refusals so a provider outage can't corrupt an accuracy measurement.</p>
+          </li>
+        </ol>
+
+        <div class="acts" style="margin-top:var(--s4)">
+          <a class="btn btn-fill" href="https://compliance-dashboard-omega-amber.vercel.app" target="_blank" rel="noopener">Open the live dashboard</a>
+          <a class="btn btn-ghost" href="https://github.com/rajkhatri08/source-governed-rag" target="_blank" rel="noopener"><svg class="icon"><use href="#i-gh"/></svg> Backend</a>
+          <a class="btn btn-ghost" href="https://github.com/rajkhatri08/compliance-dashboard" target="_blank" rel="noopener"><svg class="icon"><use href="#i-gh"/></svg> Dashboard</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 03 INVESTIGATION ═══ -->
+  <section class="sec" id="investigation">
+    <div class="shell sec-in">
+      <div class="num">03</div>
+      <div>
+        <div class="hd">
+          <p class="eyebrow">Investigation &middot; Applied statistics</p>
           <h2>A defect nobody had cracked</h2>
           <p class="sub">Raw data to business decision, end to end — messy inputs, an explicit method, a falsifiable hypothesis, physical validation, a shipped artifact, and a stakeholder review.</p>
         </div>
@@ -630,18 +736,18 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
     </div>
   </section>
 
-  <!-- ═══ 03 SHIPPED ═══ -->
+  <!-- ═══ 04 SHIPPED ═══ -->
   <section class="sec" id="work">
     <div class="shell sec-in">
-      <div class="num">03</div>
+      <div class="num">04</div>
       <div>
         <div class="hd">
-          <p class="eyebrow">Shipped</p>
+          <p class="eyebrow">Shipped &middot; Backend</p>
           <h2>What's running</h2>
-          <p class="sub">One product, in production, with real schools using it.</p>
+          <p class="sub">A live product with real schools on it, built and now maintained as its backend.</p>
         </div>
         <div class="grid one">
-          <article class="card">
+                    <article class="card">
             <div class="card-h"><span class="state on">Live · Current role</span></div>
             <h3><a class="tl" href="https://voldebuglearning.vercel.app/" target="_blank" rel="noopener">Voldebug</a></h3>
             <p class="top">Started by turning a founder's written feature brief into a deployed platform across three user roles — student, teacher, and school principal — with a 50+ tool AI-literacy library structured across six categories, a curriculum-linked prompt system aligned to NCERT and GSEB syllabi, and dashboards giving schools real visibility into adoption.</p>
@@ -654,24 +760,17 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
     </div>
   </section>
 
-  <!-- ═══ 04 IN BUILD ═══ -->
+  <!-- ═══ 05 IN BUILD ═══ -->
   <section class="sec" id="next">
     <div class="shell sec-in">
-      <div class="num">04</div>
+      <div class="num">05</div>
       <div>
         <div class="hd">
           <p class="eyebrow">In build</p>
           <h2>What I'm building next</h2>
-          <p class="sub">Listed as specifications, not achievements — nothing here is finished, and each card says so. Links appear as they ship.</p>
+          <p class="sub">Listed as a specification, not an achievement — it isn't finished, and the card says so. Links appear as it ships.</p>
         </div>
-        <div class="grid">
-          <article class="card draft">
-            <div class="card-h"><span class="state wip">In build</span><span class="eta">TARGET NOV 2026</span></div>
-            <h3>Retrieval over quality documents</h3>
-            <p>A RAG system over industrial quality documentation — inspection reports, DFMEA sheets, supplier specifications — so a quality engineer can ask whether a defect mode has appeared before and get a cited answer. FastAPI service, chunking tuned for tabular inspection records, and an evaluation harness reporting retrieval accuracy and failure cases honestly rather than cherry-picked demos.</p>
-            <div class="pills"><span class="pill next">Python</span><span class="pill next">FastAPI</span><span class="pill next">RAG</span><span class="pill next">Vector DB</span><span class="pill next">Evaluation</span></div>
-            <div class="card-f"><svg class="icon"><use href="#i-gh"/></svg> Repo + live demo on completion</div>
-          </article>
+        <div class="grid one">
           <article class="card draft">
             <div class="card-h"><span class="state wip">In build</span><span class="eta">TARGET DEC 2026</span></div>
             <h3>Text-to-SQL analyst agent</h3>
@@ -684,10 +783,10 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
     </div>
   </section>
 
-  <!-- ═══ 05 PARAMETERS ═══ -->
+  <!-- ═══ 06 PARAMETERS ═══ -->
   <section class="sec" id="stack">
     <div class="shell sec-in">
-      <div class="num">05</div>
+      <div class="num">06</div>
       <div>
         <div class="hd">
           <p class="eyebrow">Parameters</p>
@@ -696,12 +795,16 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
         </div>
         <div class="cols">
           <div>
+            <h3>Applied AI &amp; retrieval</h3>
+            <div><span class="pill">RAG pipelines</span><span class="pill">ChromaDB</span><span class="pill">Sentence embeddings</span><span class="pill">Retrieval evaluation</span><span class="pill">Grounded generation</span><span class="pill">ONNX</span></div>
+          </div>
+          <div>
             <h3>Analysis &amp; statistics</h3>
             <div><span class="pill">Python</span><span class="pill">SQL</span><span class="pill">Statistical Analysis</span><span class="pill">Linear Regression</span><span class="pill">Root Cause Analysis</span></div>
           </div>
           <div>
             <h3>Engineering</h3>
-            <div><span class="pill">Next.js</span><span class="pill">Supabase</span><span class="pill">PostgreSQL</span><span class="pill">REST APIs</span><span class="pill">Git</span></div>
+            <div><span class="pill">FastAPI</span><span class="pill">Next.js</span><span class="pill">PostgreSQL</span><span class="pill">Supabase</span><span class="pill">REST APIs</span><span class="pill">SQLAlchemy</span><span class="pill">Git</span></div>
           </div>
           <div>
             <h3>Manufacturing domain</h3>
@@ -710,24 +813,23 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
         </div>
         <div class="soonbox">
           <h3>Currently building with</h3>
-          <p>Not claimed as delivered experience. These are what the projects in section 04 are being built on, through the end of 2026.</p>
-          <div><span class="pill next">FastAPI</span><span class="pill next">RAG pipelines</span><span class="pill next">Vector databases</span><span class="pill next">Agent design</span><span class="pill next">Retrieval evaluation</span><span class="pill next">Docker</span></div>
+          <p>Not claimed as delivered experience — this is what the project in section 04 is being built on.</p>
+          <div><span class="pill next">Agent design</span><span class="pill next">Tool use &amp; guardrails</span><span class="pill next">Docker</span></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ 06 CONTACT ═══ -->
+  <!-- ═══ 07 CONTACT ═══ -->
   <section class="sec" id="contact">
     <div class="shell sec-in">
-      <div class="num">06</div>
+      <div class="num">07</div>
       <div class="reach">
         <div>
           <p class="eyebrow">Contact</p>
           <h2 style="margin-bottom:16px">Let's talk</h2>
-          <p class="sub">Based in Uttarakhand, India — open to remote, hybrid, or on-site.</p>
+          <p class="sub">Open to <strong style="color:var(--text)">applied AI, data science and analytics</strong> roles. Based in Uttarakhand, India — remote, hybrid, or on-site.</p>
           <ul class="when">
-            <li><span class="when-k">Now — Jan 2027</span><span class="when-v"><b>Remote internship</b> — alongside final year</span></li>
             <li><span class="when-k">From Jan 2027</span><span class="when-v"><b>Full-time internship</b> — with scheduled university exam leave</span></li>
             <li><span class="when-k">From Jun 2027</span><span class="when-v"><b>Full-time</b> — immediate joiner on graduation</span></li>
           </ul>
