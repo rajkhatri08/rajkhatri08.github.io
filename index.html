@@ -440,6 +440,15 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
   .reach-side{ gap:var(--s3); }
   .portrait{ width:92px; height:92px; }
 }
+
+.rt-cap{ font-family:var(--mono); font-size:9.5px; fill:var(--brass); letter-spacing:.16em; }
+.rt-q{ fill:var(--raised-2); stroke:var(--edge); stroke-width:1; }
+.rt-qt{ font-family:var(--mono); font-size:10.5px; fill:var(--text); letter-spacing:.14em; }
+.rt-box{ fill:rgba(217,162,75,.07); stroke-width:1.1; }
+.rt-lab{ font-family:var(--mono); font-size:11px; letter-spacing:.14em; font-weight:500; }
+.rt-sub{ font-family:var(--mono); font-size:8px; fill:var(--soft); letter-spacing:.05em; }
+.rt-line{ stroke:var(--rule); stroke-width:1.1; fill:none; }
+.rt-foot{ font-family:var(--mono); font-size:8.5px; fill:var(--faint); letter-spacing:.11em; }
 </style>
 
 </head>
@@ -468,10 +477,10 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
       <nav aria-label="Sections">
         <ul class="nav">
           <li><a href="#about">Thesis</a></li>
+          <li><a href="#agent">Agent</a></li>
           <li><a href="#system">RAG system</a></li>
           <li><a href="#investigation">Grounding</a></li>
           <li><a href="#work">Production</a></li>
-          <li><a href="#next">Roadmap</a></li>
           <li><a href="#stack">Stack</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -489,10 +498,10 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
 <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Menu">
   <button class="sheet-x" id="sheetX" aria-label="Close menu"><svg class="icon"><use href="#i-x"/></svg></button>
   <a href="#about">Thesis</a>
+  <a href="#agent">Agent</a>
   <a href="#system">RAG system</a>
   <a href="#investigation">Grounding</a>
   <a href="#work">Production</a>
-  <a href="#next">Roadmap</a>
   <a href="#stack">Stack</a>
   <a href="#contact">Contact</a>
   <div class="sheet-rail">
@@ -511,7 +520,7 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
       <div>
         <p class="eyebrow up">GenAI Engineering · Retrieval &amp; Governance</p>
         <h1 class="up a1">Raj Khatri</h1>
-        <p class="lede up a1">I build retrieval systems that can prove <em>where every answer came from</em> — and refuse when they can't.</p>
+        <p class="lede up a1">I build AI systems that can show <em>where every answer came from</em> — and decline when nothing can support one.</p>
         <p class="thesis up a2">Applied AI engineer with an industrial engineering background. The habit came from a factory floor, where a number you haven't verified stops a production line.</p>
         <p class="roles up a2">
           <b>Backend Developer</b> · Voldebug Innovations — current<br>
@@ -552,13 +561,13 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
   <!-- ═══ INSTRUMENT BAND ═══ -->
   <div class="band">
     <div class="shell">
-      <p class="band-label">From the deployed governance system — section 02</p>
+      <p class="band-label">From two deployed systems — sections 02 and 03</p>
       <div class="band-n">
-        <div class="n"><b>78→95%</b><span>Retrieval accuracy, labelled set</span></div>
-        <div class="n"><b>23</b><span>Hand-labelled edge cases</span></div>
-        <div class="n"><b>70</b><span>Thresholds swept, then cut</span></div>
-        <div class="n"><b>96%</b><span>Deploy footprint reduced</span></div>
-        <div class="n"><b>100%</b><span>Answers carry provenance</span></div>
+        <div class="n"><b>88–92%</b><span>Routing accuracy, pre-registered set</span></div>
+        <div class="n"><b>5/5</b><span>Correct declines on absent entities</span></div>
+        <div class="n"><b>78%</b><span>Deploy footprint cut, verified</span></div>
+        <div class="n"><b>78→95%</b><span>Retrieval accuracy, prior system</span></div>
+        <div class="n"><b>4,725</b><span>Synthetic defect events modelled</span></div>
       </div>
       <div class="kit">
         <span class="pill">Python</span><span class="pill">SQL</span><span class="pill">FastAPI</span><span class="pill">RAG</span><span class="pill">ChromaDB</span><span class="pill">PostgreSQL</span><span class="pill">Next.js</span><span class="pill">Statistical Analysis</span>
@@ -601,17 +610,74 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
         <div class="copy">
           <p>I work on <strong>retrieval and reasoning systems that can be audited</strong> — where the useful question isn't "did the model answer?" but "can we show where that answer came from, and was that source still valid?"</p>
           <p>That framing didn't come from AI. It came from a weld shop at Tata Motors, where I traced a long-standing defect with regression analysis and then went and measured the parts by hand before presenting it, because a finding that hasn't survived contact with the physical world isn't a finding yet. A model that agrees with itself proves nothing.</p>
-          <p>Applied to language models, the same instinct produced <strong>Source-Governed RAG</strong>: a system where a document's approval status and review date can veto an otherwise perfect semantic match, and every answer carries the provenance needed to defend it months later.</p>
+          <p>Applied to language models, that instinct produced two deployed systems. <strong>Source-Governed RAG</strong>: a system where a document's approval status and review date can veto an otherwise perfect semantic match, and every answer carries the provenance needed to defend it months later. Then a <strong>supplier quality agent</strong> that decides, per question, whether the answer lives in structured defect data, in corrective-action documents, in both, or in neither — and declines rather than guessing when it's the last one.</p>
           <p>The third piece is the unglamorous half — I build backend for a live product, so schema design, auth, migrations and deployment aren't theory. Most GenAI prototypes die on the way to production. I've shipped the part that usually kills them.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ 02 THE SYSTEM ═══ -->
-  <section class="sec" id="system">
+  <!-- ═══ 02 AGENT ═══ -->
+  <section class="sec" id="agent">
     <div class="shell sec-in">
       <div class="num">02</div>
+      <div>
+        <div class="hd">
+          <p class="eyebrow">Deployed · Agentic retrieval</p>
+          <h2>An agent that decides, then declines</h2>
+          <p class="sub">Supplier Quality Risk Agent — routes a supplier question to structured defect data, to corrective-action documents, to both, or to neither. The last option is the one that matters.</p>
+        </div>
+        <p class="run">SEP 2026 · 16 DAYS ACROSS 11 PHASES · PYTHON · FASTAPI · GEMINI · POSTGRES + PGVECTOR<br>RENDER · NEON · VERCEL · SYNTHETIC DATA, NO PROPRIETARY RECORDS</p>
+
+        <div class="dia-pair"><svg class="dia" viewBox="0 0 560 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Routing diagram: an incoming question is routed to SQL, documents, both, or declined when neither source can support an answer">
+  <text class="rt-cap" x="20" y="26">ONE DECISION PER QUERY &#183; ROUTE, THEN ANSWER</text>
+  <rect class="rt-q" x="130.0" y="58" width="300" height="46" rx="7"/>
+  <text class="rt-qt" x="280.0" y="86" text-anchor="middle">INCOMING QUESTION</text>
+  <rect class="rt-box" x="26.0" y="150" width="118" height="52" rx="7" stroke="#D9A24B"/><text class="rt-lab" x="85.0" y="172" text-anchor="middle" fill="#D9A24B">SQL</text><text class="rt-sub" x="85.0" y="189" text-anchor="middle">structured defect data</text><path class="rt-line" d="M280.0 112 C 280.0 132, 85.0 128, 85.0 148"/><rect class="rt-box" x="156.0" y="150" width="118" height="52" rx="7" stroke="#D9A24B"/><text class="rt-lab" x="215.0" y="172" text-anchor="middle" fill="#D9A24B">DOCS</text><text class="rt-sub" x="215.0" y="189" text-anchor="middle">8D corrective actions</text><path class="rt-line" d="M280.0 112 C 280.0 132, 215.0 128, 215.0 148"/><rect class="rt-box" x="286.0" y="150" width="118" height="52" rx="7" stroke="#D9A24B"/><text class="rt-lab" x="345.0" y="172" text-anchor="middle" fill="#D9A24B">BOTH</text><text class="rt-sub" x="345.0" y="189" text-anchor="middle">cross-checked</text><path class="rt-line" d="M280.0 112 C 280.0 132, 345.0 128, 345.0 148"/><rect class="rt-box" x="416.0" y="150" width="118" height="52" rx="7" stroke="#C2708A"/><text class="rt-lab" x="475.0" y="172" text-anchor="middle" fill="#C2708A">DECLINE</text><text class="rt-sub" x="475.0" y="189" text-anchor="middle">neither can support it</text><path class="rt-line" d="M280.0 112 C 280.0 132, 475.0 128, 475.0 148"/>
+  <text class="rt-foot" x="280.0" y="232" text-anchor="middle">EVERY ROUTE LOGGED WITH REASONING, SQL, PASSAGES AND LATENCY</text>
+</svg>
+          <p class="figcap">Each query gets one routing decision before any tool runs, and the decision is surfaced above the answer so a reviewer reads the system's reasoning first. Four tool failure modes are modelled separately, so "this supplier does not exist" and "I could not check whether it exists" never collapse into the same empty result.</p>
+        </div>
+
+        <ol class="points">
+          <li>
+            <span class="step">Pre-registering the answer key</span>
+            <p>I committed the routing ground-truth rule and the labelled 24-question evaluation set to version control <strong style="color:var(--text)">before writing the router</strong>, so the reported accuracy couldn't be quietly fitted to whatever the system turned out to do. Routing went from a 75% baseline to <strong style="color:var(--text)">88–92%</strong> through two measured prompt changes, with the before-and-after score recorded in each commit message.</p>
+          </li>
+          <li>
+            <span class="step">Reporting a range, not a best run</span>
+            <p>Three of 24 questions flipped between runs, worth 4.2 percentage points each, so the headline figure is a range across five runs rather than the best one. Two evaluation questions turned out to be mislabelled and I corrected them with written reasoning. A third failure I left counted as a miss, because fixing it needed a real system change rather than a relabel.</p>
+          </li>
+          <li>
+            <span class="step">Refusing the impressive option</span>
+            <p>Text-to-SQL passed a pre-registered 25-question reliability spike at 25/25 — and I rejected it anyway, because one query reached a correct answer by an unsound method. It was replaced with a fixed catalogue of <strong style="color:var(--text)">eight parameterised queries</strong>: less question coverage, but every path is reviewable. In a system where a wrong number triggers a supplier corrective action, that trade is worth making. SQL injection is eliminated structurally through driver-level parameter binding rather than input sanitisation.</p>
+          </li>
+          <li>
+            <span class="step">Catching it inventing evidence</span>
+            <p>A prompt improvement introduced a regression: the router began fabricating evidence for a supplier that doesn't exist. Constraining the prompt with the real entity list took decline accuracy to <strong style="color:var(--text)">5/5</strong>. Separately, the trace layer revealed five of six retrieved passages coming from the wrong supplier's report — a defect that passage counts alone had completely concealed.</p>
+          </li>
+          <li>
+            <span class="step">Data built to be falsifiable</span>
+            <p>A reproducible 24-month synthetic dataset — 10 suppliers, 50 parts, 4,725 defect events, 13 reports — with five deliberately planted patterns providing verifiable ground truth. It includes a paired case where two suppliers show <strong style="color:var(--text)">statistically identical defect-rate increases requiring opposite responses</strong>: one a genuine process degradation, one a measurement artefact. That makes single-source failure demonstrable rather than theoretical.</p>
+          </li>
+          <li>
+            <span class="step">Running it in production</span>
+            <p>Deployment footprint cut <strong style="color:var(--text)">78%, from 476 MB to 107 MB</strong>, by migrating vector storage from ChromaDB to Postgres pgvector against a 512 MB platform limit — verified behaviourally by re-running the retrieval suite and confirming cosine distances matched to four decimal places. Routing and execution are split across separate endpoints so the decision surfaces seconds before tool results complete. Git history was audited for exposed secrets before open-sourcing.</p>
+          </li>
+        </ol>
+
+        <div class="acts" style="margin-top:var(--s4)">
+          <a class="btn btn-fill" href="https://supplier-quality-agent.vercel.app" target="_blank" rel="noopener">Try the agent</a>
+          <a class="btn btn-ghost" href="https://supplier-quality-agent.onrender.com/docs" target="_blank" rel="noopener"><svg class="icon"><use href="#i-out"/></svg> API docs</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 03 THE SYSTEM ═══ -->
+  <section class="sec" id="system">
+    <div class="shell sec-in">
+      <div class="num">03</div>
       <div>
         <div class="hd">
           <p class="eyebrow">Deployed · RAG &amp; governance</p>
@@ -676,7 +742,7 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
   <!-- ═══ 03 INVESTIGATION ═══ -->
   <section class="sec" id="investigation">
     <div class="shell sec-in">
-      <div class="num">03</div>
+      <div class="num">04</div>
       <div>
         <div class="hd">
           <p class="eyebrow">Where the habit came from</p>
@@ -763,7 +829,7 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
   <!-- ═══ 04 SHIPPED ═══ -->
   <section class="sec" id="work">
     <div class="shell sec-in">
-      <div class="num">04</div>
+      <div class="num">05</div>
       <div>
         <div class="hd">
           <p class="eyebrow">Production engineering</p>
@@ -785,29 +851,6 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
     </div>
   </section>
 
-  <!-- ═══ 05 IN BUILD ═══ -->
-  <section class="sec" id="next">
-    <div class="shell sec-in">
-      <div class="num">05</div>
-      <div>
-        <div class="hd">
-          <p class="eyebrow">In build</p>
-          <h2>Next: a guardrailed SQL agent</h2>
-          <p class="sub">Listed as a specification, not an achievement — it isn't finished, and the card says so. Links appear as it ships.</p>
-        </div>
-        <div class="grid one">
-          <article class="card draft">
-            <div class="card-h"><span class="state wip">In build</span><span class="eta">TARGET DEC 2026</span></div>
-            <h3>Text-to-SQL analyst agent</h3>
-            <p>A narrowly scoped agent answering questions against a production quality database — deliberately restrained rather than a sprawling multi-agent demo. The interesting part is the guardrails: what the agent is not permitted to do, how it handles an ambiguous question, and when it should refuse to answer instead of guessing.</p>
-            <div class="pills"><span class="pill next">Python</span><span class="pill next">SQL</span><span class="pill next">Agents</span><span class="pill next">Tool use</span><span class="pill next">Guardrails</span></div>
-            <div class="card-f"><svg class="icon"><use href="#i-gh"/></svg> Repo + live demo on completion</div>
-          </article>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ═══ 06 PARAMETERS ═══ -->
   <section class="sec" id="stack">
     <div class="shell sec-in">
@@ -820,8 +863,8 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
         </div>
         <div class="cols">
           <div>
-            <h3>GenAI &amp; retrieval</h3>
-            <div><span class="pill">RAG pipelines</span><span class="pill">Retrieval-augmented generation</span><span class="pill">Vector search (ChromaDB)</span><span class="pill">Sentence embeddings (MiniLM)</span><span class="pill">NLP</span><span class="pill">Grounded generation</span><span class="pill">Refusal constraints</span><span class="pill">Retrieval evaluation</span><span class="pill">ONNX</span></div>
+            <h3>GenAI &amp; agents</h3>
+            <div><span class="pill">LLM tool use</span><span class="pill">Agentic routing</span><span class="pill">Gemini</span><span class="pill">RAG pipelines</span><span class="pill">Retrieval-augmented generation</span><span class="pill">Vector search (pgvector, ChromaDB)</span><span class="pill">Sentence embeddings (MiniLM)</span><span class="pill">NLP</span><span class="pill">Grounded generation</span><span class="pill">Refusal constraints</span><span class="pill">Retrieval evaluation</span><span class="pill">Prompt regression testing</span></div>
           </div>
           <div>
             <h3>Machine learning &amp; statistics</h3>
@@ -829,11 +872,11 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
           </div>
           <div>
             <h3>Backend &amp; deployment</h3>
-            <div><span class="pill">FastAPI</span><span class="pill">Pydantic</span><span class="pill">SQLAlchemy</span><span class="pill">PostgreSQL</span><span class="pill">Supabase</span><span class="pill">REST API design</span><span class="pill">Next.js</span><span class="pill">Render</span><span class="pill">Vercel</span><span class="pill">Neon</span><span class="pill">Git</span></div>
+            <div><span class="pill">FastAPI</span><span class="pill">Pydantic</span><span class="pill">SQLAlchemy</span><span class="pill">PostgreSQL</span><span class="pill">Supabase</span><span class="pill">REST API design</span><span class="pill">Next.js</span><span class="pill">pgvector</span><span class="pill">Render</span><span class="pill">Vercel</span><span class="pill">Neon</span><span class="pill">Git</span></div>
           </div>
           <div>
-            <h3>Governance &amp; domain</h3>
-            <div><span class="pill">AI governance</span><span class="pill">Compliance &amp; audit</span><span class="pill">Risk classification</span><span class="pill">Evaluation-set design</span><span class="pill">DFMEA</span><span class="pill">Six Sigma</span><span class="pill">Root-cause analysis</span></div>
+            <h3>Governance &amp; evaluation</h3>
+            <div><span class="pill">AI governance</span><span class="pill">Pre-registered evaluation</span><span class="pill">Compliance &amp; audit</span><span class="pill">Risk classification</span><span class="pill">Evaluation-set design</span><span class="pill">DFMEA</span><span class="pill">Six Sigma</span><span class="pill">Root-cause analysis</span></div>
           </div>
         </div>
         <div class="soonbox">
