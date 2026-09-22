@@ -481,6 +481,7 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
           <li><a href="#system">RAG system</a></li>
           <li><a href="#investigation">Grounding</a></li>
           <li><a href="#work">Production</a></li>
+          <li><a href="#next">In build</a></li>
           <li><a href="#stack">Stack</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -502,6 +503,7 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
   <a href="#system">RAG system</a>
   <a href="#investigation">Grounding</a>
   <a href="#work">Production</a>
+  <a href="#next">In build</a>
   <a href="#stack">Stack</a>
   <a href="#contact">Contact</a>
   <div class="sheet-rail">
@@ -598,7 +600,7 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
     </div>
   </div>
 
-  <!-- ═══ 01 OBSERVATION ═══ -->
+  <!-- ═══ 01 THESIS ═══ -->
   <section class="sec first" id="about">
     <div class="shell sec-in">
       <div class="num">01</div>
@@ -739,7 +741,7 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
     </div>
   </section>
 
-  <!-- ═══ 03 INVESTIGATION ═══ -->
+  <!-- ═══ 04 GROUNDING ═══ -->
   <section class="sec" id="investigation">
     <div class="shell sec-in">
       <div class="num">04</div>
@@ -826,7 +828,7 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
     </div>
   </section>
 
-  <!-- ═══ 04 SHIPPED ═══ -->
+  <!-- ═══ 05 PRODUCTION ═══ -->
   <section class="sec" id="work">
     <div class="shell sec-in">
       <div class="num">05</div>
@@ -851,10 +853,35 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
     </div>
   </section>
 
-  <!-- ═══ 06 PARAMETERS ═══ -->
-  <section class="sec" id="stack">
+  <!-- ═══ 06 IN BUILD ═══ -->
+  <section class="sec" id="next">
     <div class="shell sec-in">
       <div class="num">06</div>
+      <div>
+        <div class="hd">
+          <p class="eyebrow">In build · Time-series ML</p>
+          <h2>Next: from documents to sensors</h2>
+          <p class="sub">Part three of a series. The first system retrieves and governs, the second decides, and this one detects and diagnoses. It is a specification, not an achievement &mdash; no results exist yet, and none are claimed.</p>
+        </div>
+        <div class="grid one">
+          <article class="card draft">
+            <div class="card-h"><span class="state wip">In build</span><span class="eta">SEP &ndash; NOV 2026</span></div>
+            <h3>Plant Health &amp; Root-Cause Agent</h3>
+            <p class="top">Monitoring and diagnosis for a simulated chemical plant, on the Tennessee Eastman Process benchmark &mdash; 52 process variables across seven equipment groups. Detection models are trained on normal operation only, using PCA with T&sup2; and SPE control limits alongside an autoencoder. The output is a health score per equipment group, and one grouped alert per episode instead of one alarm per sensor.</p>
+            <p>When an alert opens, a LangGraph agent ranks up to three root-cause hypotheses from sensor trends, a governed failure-mode library and maintenance history. Each hypothesis needs two independent pieces of evidence, and the agent declines when they aren't there. The library reuses the governance rule from Source-Governed RAG: only the current approved revision can be retrieved.</p>
+            <p>Targets will be committed before the first evaluation run, as in the supplier agent. Faults the literature reports as near-undetectable get their own row rather than being averaged away. The plant is simulated and the maintenance records are synthetic, and the write-up will say so plainly.</p>
+            <div class="pills"><span class="pill next">PyTorch</span><span class="pill next">Anomaly detection</span><span class="pill next">PCA (T&sup2; / SPE)</span><span class="pill next">Autoencoders</span><span class="pill next">LangGraph</span><span class="pill next">Gemini</span><span class="pill next">pgvector</span></div>
+            <div class="card-f"><svg class="icon"><use href="#i-gh"/></svg> Repo, live demo and measured results on completion</div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 07 PARAMETERS ═══ -->
+  <section class="sec" id="stack">
+    <div class="shell sec-in">
+      <div class="num">07</div>
       <div>
         <div class="hd">
           <p class="eyebrow">Parameters</p>
@@ -881,17 +908,17 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
         </div>
         <div class="soonbox">
           <h3>Currently building with</h3>
-          <p>Not claimed as delivered experience — this is what the project in section 04 is being built on.</p>
-          <div><span class="pill next">Agent design</span><span class="pill next">Tool use &amp; guardrails</span><span class="pill next">Docker</span></div>
+          <p>Not claimed as delivered experience &mdash; this is what the project in section 06 is being built on.</p>
+          <div><span class="pill next">PyTorch</span><span class="pill next">Time-series anomaly detection</span><span class="pill next">PCA monitoring (T&sup2; / SPE)</span><span class="pill next">Autoencoders</span><span class="pill next">LangGraph</span><span class="pill next">GitHub Actions CI</span><span class="pill next">Docker</span></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ 07 CONTACT ═══ -->
+  <!-- ═══ 08 CONTACT ═══ -->
   <section class="sec" id="contact">
     <div class="shell sec-in">
-      <div class="num">07</div>
+      <div class="num">08</div>
       <div class="reach">
         <div>
           <p class="eyebrow">Contact</p>
