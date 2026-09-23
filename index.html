@@ -3,12 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Raj Khatri — GenAI Engineer | Retrieval, Governance &amp; Evaluation</title>
-<meta name="description" content="Raj Khatri — GenAI engineer. Built and deployed Source-Governed RAG: retrieval over regulatory documents where source approval status vetoes semantic similarity. 78→95% retrieval accuracy, grounded generation with refusal constraints, PostgreSQL audit trail.">
+<title>Raj Khatri — GenAI Engineer | Retrieval &amp; Governance</title>
+<meta name="description" content="GenAI engineer. Built an agent routing supplier-quality questions between SQL and documents (88–92% on a pre-registered eval) and a governed RAG system.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Raj Khatri — GenAI Engineer | Retrieval, Governance &amp; Evaluation">
-<meta property="og:description" content="Deployed a governed RAG system for regulatory search, plus statistical root-cause analysis on real manufacturing data. Full-time internship from Jan 2027; full-time, immediate joiner from Jun 2027.">
-<meta name="twitter:card" content="summary">
+<meta property="og:title" content="Raj Khatri — GenAI Engineer | Retrieval &amp; Governance">
+<meta property="og:description" content="A supplier-quality agent that decides between SQL, documents, both or neither — and declines when nothing supports an answer — plus a governed RAG system for regulatory search.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://rajkhatri08.github.io/">
+<meta property="og:url" content="https://rajkhatri08.github.io/">
+<meta property="og:site_name" content="Raj Khatri">
+<meta property="og:image" content="https://rajkhatri08.github.io/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Raj Khatri, GenAI engineer: an agent that decides then declines, and a governed RAG system.">
+<meta name="twitter:title" content="Raj Khatri — GenAI Engineer | Retrieval &amp; Governance">
+<meta name="twitter:description" content="GenAI engineer. Built an agent routing supplier-quality questions between SQL and documents (88–92% on a pre-registered eval) and a governed RAG system.">
+<meta name="twitter:image" content="https://rajkhatri08.github.io/og.png">
 <meta name="theme-color" content="#0B1120">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230B1120'/%3E%3Ccircle cx='16' cy='16' r='11' fill='none' stroke='%23D9A24B' stroke-width='1.5' opacity='.7'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%23D9A24B'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,19 +35,18 @@
 
 :root{
   /* surface ladder — each step is a real level, not a tint */
+  /* text ladder */
+  /* space scale */
   --ink:#080D18;
   --base:#0B1120;
   --raised:#111A2C;
   --raised-2:#16203A;
   --edge:#22304F;
   --rule:#3C4A6E;
-
-  /* text ladder */
-  --faint:#6E7EA8;
+  --faint:#7888B2;
   --soft:#93A3C9;
   --text:#DDE5F5;
   --bright:#F7F9FD;
-
   --brass:#D9A24B;
   --brass-lt:#F0CE92;
   --green:#4FB286;
@@ -46,16 +55,19 @@
   --on-ok:#EAFBF3;
   --danger:#C2708A;
   --label:#8494BD;
-
-  --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-  --sans:'Archivo',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
-
-  /* space scale */
-  --s1:8px; --s2:14px; --s3:22px; --s4:34px;
-  --s5:56px; --s6:88px; --s7:128px;
-
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --sans:"Archivo",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --s1:8px;
+  --s2:14px;
+  --s3:22px;
+  --s4:34px;
+  --s5:56px;
+  --s6:88px;
+  --s7:128px;
   --shell:1160px;
   --read:60ch;
+  --teal:#56C2CC;
+  --teal-lt:#A9E4E9;
 }
 
 *,*::before,*::after{ box-sizing:border-box; }
@@ -116,7 +128,7 @@ a:focus-visible,button:focus-visible{ outline:2px solid var(--brass); outline-of
 .nav a{ font-family:var(--mono); font-size:12px; letter-spacing:.04em; color:var(--soft); text-decoration:none; }
 .rail{ display:flex; gap:2px; padding-left:var(--s2); border-left:1px solid var(--edge); }
 .ib{ display:inline-flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:6px; font-size:16px; color:var(--soft); text-decoration:none; border:1px solid transparent; }
-.burger{ display:none; width:40px; height:40px; align-items:center; justify-content:center; background:transparent; border:1px solid var(--edge); border-radius:6px; color:var(--text); font-size:18px; cursor:pointer; }
+.burger{ display:none; width:44px; height:44px; align-items:center; justify-content:center; background:transparent; border:1px solid var(--edge); border-radius:6px; color:var(--text); font-size:18px; cursor:pointer; }
 @media (max-width:900px){ .nav,.rail{ display:none; } .burger{ display:inline-flex; } }
 
 .sheet{ position:fixed; inset:0; z-index:70; background:var(--base); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; opacity:0; visibility:hidden; transition:opacity .2s ease, visibility .2s; }
@@ -194,7 +206,7 @@ body.lock{ overflow:hidden; }
 .lede em{ font-style:normal; color:var(--brass); }
 
 .roles{ font-family:var(--mono); font-size:12px; line-height:1.85; color:var(--soft); margin:var(--s3) 0 0; }
-.roles b{ color:var(--text); font-weight:400; }
+
 .acts{ display:flex; flex-wrap:wrap; gap:12px; }
 
 .hero-chart{ width:100%; height:auto; overflow:visible; }
@@ -233,9 +245,9 @@ body.lock{ overflow:hidden; }
 .q{ margin:0; padding:2px 0 2px var(--s3); border-left:3px solid var(--rule); }
 .q p{ font-size:clamp(1.08rem,.5vw + 1rem,1.26rem); line-height:1.52; font-style:italic; color:var(--bright); font-weight:500; margin:0 0 var(--s2); }
 .q p em{ font-style:italic; color:var(--brass); }
-.q footer{ font-family:var(--mono); font-size:11px; line-height:1.7; color:var(--soft); font-style:normal; }
+.q footer{ font-family:var(--mono); font-size:11px; line-height:1.7; color:var(--soft); font-style:normal; border-top:0; padding:0; margin-top:4px; }
 .q footer b{ display:block; color:var(--text); font-weight:500; letter-spacing:.02em; }
-.verify-link{ display:inline-flex; align-items:center; gap:6px; margin-top:var(--s4); font-family:var(--mono); font-size:12px; color:var(--brass); }
+.verify-link{ display:inline-flex; align-items:center; gap:6px; margin-top:var(--s4); min-height:40px; font-family:var(--mono); font-size:12px; color:var(--brass); }
 .verify-link .icon{ font-size:13px; }
 
 /* ── sections + spec-limit rules ──────────────────────────── */
@@ -269,10 +281,11 @@ body.lock{ overflow:hidden; }
 /* ── investigation stages ─────────────────────────────────── */
 .run{ font-family:var(--mono); font-size:11px; letter-spacing:.05em; color:var(--soft); line-height:2; margin:0 0 var(--s5); }
 .stage{
-  position:relative; display:grid;
+  position:relative;
+  display:grid;
   grid-template-columns:minmax(0,1fr) minmax(0,1fr);
-  gap:var(--s5); align-items:center;
-  padding:var(--s5) 0;
+  gap:var(--s5);
+  align-items:center;
 }
 .stage + .stage{ border-top:1px solid var(--edge); }
 .stage:nth-of-type(even) .viz{ order:2; }
@@ -350,8 +363,8 @@ body.lock{ overflow:hidden; }
 .when-v b{ color:var(--text); font-weight:600; }
 @media (max-width:620px){ .when li{ grid-template-columns:1fr; gap:4px; } }
 
-.reach{ display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-start; gap:var(--s5); }
-.reach-links{ display:flex; flex-wrap:wrap; gap:11px; padding-top:6px; }
+.reach{ flex-wrap:wrap; justify-content:space-between; display:grid; grid-template-columns:minmax(0,1fr) 260px; gap:var(--s5); align-items:start; }
+.reach-links{ display:flex; flex-wrap:wrap; gap:12px; padding:0; }
 
 body > footer, .site-foot{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
 .foot{ display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:14px; font-family:var(--mono); font-size:11px; letter-spacing:.06em; color:var(--faint); }
@@ -370,7 +383,10 @@ body > footer, .site-foot{ border-top:1px solid var(--edge); padding:var(--s4) 0
   body{ background:#fff; color:#111; font-size:11pt; }
   h1,h2,h3{ color:#000; }
   .card,.panel,.band,.verify{ background:#fff; border-color:#bbb; }
-  .sec{ padding:20px 0; break-inside:avoid; }
+  .sec{ padding:20px 0; }
+  .hero-chart,.cover-links,.kit,.foot-rail{ display:none !important; }
+  .cover,.points li,.q,.card,.dia{ break-inside:avoid; }
+  #agent,#agent .cover,#agent .dia,#system .cover,.dia,.reach-card{ background:#fff !important; box-shadow:none !important; }
   .sec::before,.sec::after{ display:none; }
   .stage{ break-inside:avoid; }
   .stage::before{ color:#eee; }
@@ -406,11 +422,17 @@ body > footer, .site-foot{ border-top:1px solid var(--edge); padding:var(--s4) 0
 .points li{ counter-increment:pt; position:relative; padding:var(--s4) 0 var(--s4) 64px; border-top:1px solid var(--edge); }
 .points li::before{
   content:counter(pt,decimal-leading-zero);
-  position:absolute; left:0; top:var(--s4);
-  font-family:var(--mono); font-size:1.5rem; font-weight:500; line-height:1;
-  color:var(--brass); opacity:.75;
+  position:absolute;
+  left:0;
+  top:var(--s4);
+  font-family:var(--mono);
+  font-size:1.5rem;
+  font-weight:500;
+  line-height:1;
+  opacity:1;
+  color:var(--faint);
 }
-.points .step{ display:block; font-family:var(--mono); font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--brass); margin-bottom:10px; }
+.points .step{ display:block; font-family:var(--mono); font-size:11px; letter-spacing:.2em; text-transform:uppercase; margin-bottom:10px; color:var(--label); }
 .points p{ font-size:1.06rem; line-height:1.68; margin:0; max-width:64ch; color:var(--text); }
 @media (max-width:640px){
   .points li{ padding:var(--s3) 0 var(--s3) 44px; }
@@ -429,7 +451,6 @@ body > footer, .site-foot{ border-top:1px solid var(--edge); padding:var(--s4) 0
   font-family:var(--mono); font-size:9.5px; letter-spacing:.2em; text-transform:uppercase;
   color:var(--faint); margin:0; padding:var(--s2) 0 0;
 }
-.roles b{ color:var(--brass); font-weight:500; }
 
 /* ── contact portrait ─────────────────────────────────────────────── */
 .reach-side{ display:flex; align-items:flex-start; gap:var(--s4); flex-wrap:wrap; }
@@ -459,17 +480,15 @@ body > footer, .site-foot{ border-top:1px solid var(--edge); padding:var(--s4) 0
 .rt-foot{ font-family:var(--mono); font-size:8.5px; fill:var(--faint); letter-spacing:.11em; }
 
 /* ═══ UI pass: accent discipline, wrapping, contact ═══ */
-.points .step{ color:var(--label); }
-.points li::before{ color:var(--faint); opacity:1; }
+
 .verify-h span, .verify-h p{ color:var(--label); }
 .roles b{ color:var(--text); font-weight:500; }
 
 h1, h2, h3, .lede, .sub, .eyebrow{ text-wrap:balance; }
 p, li, figcaption{ text-wrap:pretty; }
 
-.reach{ display:grid; grid-template-columns:minmax(0,1fr) 260px; gap:var(--s5); align-items:start; }
 .reach-main .when{ margin-bottom:var(--s4); }
-.reach-links{ display:flex; flex-wrap:wrap; gap:12px; padding:0; }
+
 .reach-row{ display:flex; flex-wrap:wrap; gap:8px 22px; margin-top:var(--s3); }
 .chip-link{
   display:inline-flex; align-items:center; gap:8px; padding:6px 0;
@@ -501,12 +520,11 @@ p, li, figcaption{ text-wrap:pretty; }
 
 /* ═══ UI pass: verification fixes ═══ */
 @media (min-width:901px){ .only-narrow{ display:none !important; } }
-.q footer{ border-top:0; padding:0; margin-top:4px; }
 
 #stack .cols h3{ color:var(--label); }
 
 /* ═══ Project identity: one accent per project, lead project raised ═══ */
-:root{ --teal:#56C2CC; --teal-lt:#A9E4E9; }
+
 #agent { --acc:var(--brass); --acc-lt:var(--brass-lt); background:var(--raised); }
 #system{ --acc:var(--teal);  --acc-lt:var(--teal-lt); }
 
@@ -565,8 +583,48 @@ p, li, figcaption{ text-wrap:pretty; }
   .cover-body{ grid-template-columns:1fr; }
   .cover-links{ justify-content:flex-start; }
 }
+
+/* ═══ Touch targets ═══ */
+.card-f .tl{ display:inline-flex; align-items:center; min-height:36px; }
+@media (max-width:900px){
+  .ib{ width:44px; height:44px; }
+  .chip-link{ min-height:44px; }
+}
 </style>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Raj Khatri",
+  "url": "https://rajkhatri08.github.io/",
+  "image": "https://rajkhatri08.github.io/me.jpg",
+  "jobTitle": "Applied AI Engineer",
+  "description": "GenAI engineering: retrieval systems, agentic routing, evaluation and AI governance.",
+  "sameAs": [
+    "https://www.linkedin.com/in/rajkhatri2295/",
+    "https://github.com/rajkhatri08"
+  ],
+  "knowsAbout": [
+    "Retrieval-augmented generation",
+    "LLM agents",
+    "AI governance",
+    "LLM evaluation",
+    "FastAPI",
+    "PostgreSQL",
+    "pgvector"
+  ]
+}
+</script>
+<noscript><style>
+  @media (max-width:900px){
+    .bar{ position:static !important; }
+    .burger{ display:none !important; }
+    .bar-in{ flex-wrap:wrap; row-gap:8px; }
+    .bar-in > nav{ flex-basis:100%; }
+    .nav{ display:flex !important; flex-wrap:wrap; gap:4px 18px; padding:0; margin:0; }
+  }
+</style></noscript>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -729,7 +787,7 @@ p, li, figcaption{ text-wrap:pretty; }
         <div class="copy">
           <p>I work on <strong>retrieval and reasoning systems that can be audited</strong> — where the useful question isn’t “did the model answer?” but “can we show where that answer came from, and was that source still valid?”</p>
           <p>That framing didn't come from AI. It came from a weld shop at Tata Motors, where I traced a long-standing defect with regression analysis and then went and measured the parts by hand before presenting it, because a finding that hasn't survived contact with the physical world isn't a finding yet. A model that agrees with itself proves nothing.</p>
-          <p>Applied to language models, that instinct produced two deployed systems. <strong>Source-Governed RAG</strong>: a system where a document's approval status and review date can veto an otherwise perfect semantic match, and every answer carries the provenance needed to defend it months later. Then a <strong>supplier quality agent</strong> that decides, per question, whether the answer lives in structured defect data, in corrective-action documents, in both, or in neither — and declines rather than guessing when it's the last one.</p>
+          <p>Applied to language models, that instinct produced two deployed systems. <strong>Source-Governed RAG</strong>: a system where a lapsed or unapproved source can veto an otherwise perfect semantic match, and every answer carries the provenance needed to defend it months later. Then a <strong>supplier quality agent</strong> that decides, per question, whether the answer lives in structured defect data, in corrective-action documents, in both, or in neither — and declines rather than guessing when it's the last one.</p>
           <p>The third piece is the unglamorous half — I build backend for a live product, so schema design, auth, migrations and deployment aren't theory. Most GenAI prototypes die on the way to production. I've shipped the part that usually kills them.</p>
         </div>
       </div>
@@ -752,6 +810,7 @@ p, li, figcaption{ text-wrap:pretty; }
             <div class="cover-fig"><b>88–92%</b><span>Routing accuracy on a pre‑registered 24-question set, reported across five runs</span></div>
             <div class="cover-links">
               <a class="btn btn-fill" href="https://supplier-quality-agent.vercel.app" target="_blank" rel="noopener">Try the agent</a>
+              <a class="btn btn-ghost" href="https://github.com/rajkhatri08/supplier-quality-agent" target="_blank" rel="noopener"><svg class="icon"><use href="#i-gh"/></svg> Code</a>
               <a class="btn btn-ghost" href="https://supplier-quality-agent.onrender.com/docs" target="_blank" rel="noopener"><svg class="icon"><use href="#i-out"/></svg> API docs</a>
             </div>
           </div>
@@ -1094,6 +1153,14 @@ p, li, figcaption{ text-wrap:pretty; }
    that entire category of machinery is what caused every earlier bug. */
 (function () {
   "use strict";
+
+  /* Wake the agent's free-tier backend as the page loads, so the demo is
+     warm by the time a visitor clicks through. Fire-and-forget: no layout
+     reads, no listeners, and a failure is silent. */
+  try {
+    fetch('https://supplier-quality-agent.onrender.com/docs', { mode: 'no-cors', cache: 'no-store' })
+      .catch(function () {});
+  } catch (err) {}
 
   var y = document.getElementById('yr');
   if (y) { y.textContent = new Date().getFullYear(); }
