@@ -41,6 +41,11 @@
   --brass:#D9A24B;
   --brass-lt:#F0CE92;
   --green:#4FB286;
+  --on-brass:#150E03;
+  --ok-edge:#2E7D5B;
+  --on-ok:#EAFBF3;
+  --danger:#C2708A;
+  --label:#8494BD;
 
   --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   --sans:'Archivo',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
@@ -77,7 +82,7 @@ h1,h2,h3{ margin:0; color:var(--bright); line-height:1.1; font-weight:700; }
 p{ margin:0 0 1.15em; }
 a{ color:inherit; }
 svg{ display:block; max-width:100%; }
-::selection{ background:var(--brass); color:#150E03; }
+::selection{ background:var(--brass); color:var(--on-brass); }
 
 .shell{ max-width:var(--shell); margin:0 auto; padding:0 var(--s4); }
 @media (max-width:640px){ .shell{ padding:0 var(--s3); } }
@@ -86,16 +91,16 @@ svg{ display:block; max-width:100%; }
 .sr{ position:absolute; width:1px; height:1px; margin:-1px; padding:0; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
 .icon{ width:1em; height:1em; fill:currentColor; flex:none; }
 
-a:focus-visible,button:focus-visible{ outline:2px solid var(--brass); outline-offset:3px; border-radius:3px; }
+a:focus-visible,button:focus-visible{ outline:2px solid var(--brass); outline-offset:3px; border-radius:6px; }
 
-.skip{ position:absolute; left:-9999px; top:0; z-index:200; background:var(--brass); color:#150E03; padding:10px 18px; font-family:var(--mono); font-size:13px; }
+.skip{ position:absolute; left:-9999px; top:0; z-index:200; background:var(--brass); color:var(--on-brass); padding:10px 18px; font-family:var(--mono); font-size:13px; }
 .skip:focus{ left:0; }
 
 /* ── eyebrow label ────────────────────────────────────────── */
 .eyebrow{
   display:inline-flex; align-items:center; gap:10px;
   font-family:var(--mono); font-size:11px; font-weight:500;
-  letter-spacing:.28em; text-transform:uppercase; color:var(--brass);
+  letter-spacing:.28em; text-transform:uppercase; color:var(--label);
   margin:0 0 var(--s3);
 }
 .eyebrow::before{ content:""; width:26px; height:1px; background:var(--brass); }
@@ -108,7 +113,7 @@ a:focus-visible,button:focus-visible{ outline:2px solid var(--brass); outline-of
 .mark b{ color:var(--brass); font-weight:500; }
 .bar-r{ display:flex; align-items:center; gap:var(--s3); }
 .nav{ display:flex; gap:var(--s3); list-style:none; margin:0; padding:0; }
-.nav a{ font-family:var(--mono); font-size:12.5px; letter-spacing:.04em; color:var(--soft); text-decoration:none; }
+.nav a{ font-family:var(--mono); font-size:12px; letter-spacing:.04em; color:var(--soft); text-decoration:none; }
 .rail{ display:flex; gap:2px; padding-left:var(--s2); border-left:1px solid var(--edge); }
 .ib{ display:inline-flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:6px; font-size:16px; color:var(--soft); text-decoration:none; border:1px solid transparent; }
 .burger{ display:none; width:40px; height:40px; align-items:center; justify-content:center; background:transparent; border:1px solid var(--edge); border-radius:6px; color:var(--text); font-size:18px; cursor:pointer; }
@@ -131,10 +136,10 @@ body.lock{ overflow:hidden; }
 }
 .btn .icon{ font-size:16px; }
 .btn::after{ content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none; opacity:0; transition:opacity .18s ease; box-shadow:0 14px 30px -14px rgba(0,0,0,.9); }
-.btn-fill{ background:var(--brass); color:#150E03; border-color:var(--brass); font-weight:500; }
+.btn-fill{ background:var(--brass); color:var(--on-brass); border-color:var(--brass); font-weight:500; }
 .btn-fill::after{ box-shadow:0 14px 32px -12px rgba(217,162,75,.55); }
 .btn-ghost{ background:transparent; color:var(--text); border-color:var(--edge); }
-.btn.ok{ background:#2E7D5B; border-color:#2E7D5B; color:#EAFBF3; }
+.btn.ok{ background:var(--ok-edge); border-color:var(--ok-edge); color:var(--on-ok); }
 
 .btn,.ib,.nav a,.mark,.burger,.sheet-x,.sheet a,.tl{ touch-action:manipulation; -webkit-tap-highlight-color:transparent; }
 .tl{ color:inherit; text-decoration:none; border-bottom:1px solid transparent; display:inline-block; transition:color .16s ease, border-color .16s ease, transform .16s cubic-bezier(.2,.7,.3,1); }
@@ -157,7 +162,7 @@ body.lock{ overflow:hidden; }
 
 /* ── hero ─────────────────────────────────────────────────── */
 .hero{
-  padding:var(--s7) 0 var(--s6);
+  padding:var(--s5) 0 var(--s5);
   background:
     radial-gradient(ellipse 60% 58% at 88% 6%, rgba(78,100,164,.26), transparent 64%),
     radial-gradient(ellipse 46% 40% at 2% 96%, rgba(217,162,75,.055), transparent 62%);
@@ -184,11 +189,11 @@ body.lock{ overflow:hidden; }
 .lede{
   font-size:clamp(1.22rem,1.5vw + .95rem,1.75rem);
   font-weight:500; color:var(--bright); line-height:1.34;
-  max-width:22ch; margin:0 0 var(--s4);
+  max-width:26ch; margin:0 0 var(--s3);
 }
 .lede em{ font-style:normal; color:var(--brass); }
 
-.roles{ font-family:var(--mono); font-size:12.5px; line-height:2; color:var(--soft); margin:0 0 var(--s4); }
+.roles{ font-family:var(--mono); font-size:12px; line-height:1.85; color:var(--soft); margin:var(--s3) 0 0; }
 .roles b{ color:var(--text); font-weight:400; }
 .acts{ display:flex; flex-wrap:wrap; gap:12px; }
 
@@ -209,22 +214,23 @@ body.lock{ overflow:hidden; }
 .n{ padding:var(--s3) var(--s3); border-right:1px solid var(--edge); }
 .n:last-child{ border-right:none; }
 .n b{ display:block; font-family:var(--mono); font-size:1.7rem; font-weight:500; color:var(--brass); line-height:1.15; margin-bottom:6px; }
-.n span{ font-family:var(--mono); font-size:10px; letter-spacing:.13em; text-transform:uppercase; color:var(--soft); line-height:1.5; }
+.n span{ display:block; font-family:var(--mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--soft); line-height:1.55; hyphens:none; }
+.n b small{ font-size:.55em; margin-left:4px; color:var(--brass); opacity:.8; letter-spacing:.06em; }
 @media (max-width:660px){ .n{ border-right:none; border-bottom:1px solid var(--edge); } .n:last-child{ border-bottom:none; } }
 
 .kit{ display:flex; flex-wrap:wrap; align-items:center; gap:7px; padding:var(--s3) 0; border-top:1px solid var(--edge); }
-.pill{ font-family:var(--mono); font-size:11.5px; padding:6px 13px; border:1px solid var(--edge); border-radius:999px; color:var(--text); background:var(--raised); }
+.pill{ font-family:var(--mono); font-size:11px; padding:6px 13px; border:1px solid var(--edge); border-radius:999px; color:var(--text); background:var(--raised); }
 .pill.next{ border-style:dashed; background:transparent; color:var(--soft); }
 .kit-sep{ font-family:var(--mono); font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--faint); padding:0 4px; }
 
 /* ── verification ─────────────────────────────────────────── */
-.verify{ background:var(--raised); border-bottom:1px solid var(--edge); padding:var(--s6) 0; }
+.verify{ background:var(--raised); border-bottom:1px solid var(--edge); padding:var(--s5) 0; }
 @media (max-width:900px){ .verify{ padding:var(--s5) 0; } }
 .verify-h{ display:flex; align-items:flex-start; gap:12px; margin-bottom:var(--s4); }
 .verify-h .icon{ font-size:24px; color:var(--brass); opacity:.55; margin-top:2px; }
 .verify-h span{ font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--brass); line-height:1.6; }
-.quotes{ display:grid; grid-template-columns:repeat(auto-fit,minmax(min(310px,100%),1fr)); gap:var(--s5); }
-.q{ margin:0; padding:2px 0 2px var(--s3); border-left:4px solid var(--brass); }
+.quotes{ display:grid; grid-template-columns:repeat(auto-fit,minmax(min(310px,100%),1fr)); gap:var(--s5); align-items:start; }
+.q{ margin:0; padding:2px 0 2px var(--s3); border-left:3px solid var(--rule); }
 .q p{ font-size:clamp(1.08rem,.5vw + 1rem,1.26rem); line-height:1.52; font-style:italic; color:var(--bright); font-weight:500; margin:0 0 var(--s2); }
 .q p em{ font-style:italic; color:var(--brass); }
 .q footer{ font-family:var(--mono); font-size:11px; line-height:1.7; color:var(--soft); font-style:normal; }
@@ -233,7 +239,7 @@ body.lock{ overflow:hidden; }
 .verify-link .icon{ font-size:13px; }
 
 /* ── sections + spec-limit rules ──────────────────────────── */
-.sec{ position:relative; padding:var(--s7) 0; scroll-margin-top:74px; }
+.sec{ position:relative; padding:var(--s6) 0; scroll-margin-top:74px; }
 @media (max-width:900px){ .sec{ padding:var(--s6) 0; } }
 .sec::after{
   content:""; position:absolute; top:0; left:0; right:0; height:1px;
@@ -255,13 +261,13 @@ body.lock{ overflow:hidden; }
 
 .sec h2{ font-size:clamp(1.95rem,3vw + .8rem,3rem); letter-spacing:-.028em; margin-bottom:var(--s3); }
 .sub{ color:var(--soft); font-size:1.06rem; max-width:52ch; margin:0; }
-.hd{ margin-bottom:var(--s5); }
+.hd{ margin-bottom:var(--s4); }
 .copy{ max-width:var(--read); }
-.copy p{ font-size:1.09rem; line-height:1.72; margin-bottom:1.3em; }
+.copy p{ font-size:1.06rem; line-height:1.72; margin-bottom:1.3em; }
 .copy strong{ color:var(--bright); font-weight:600; }
 
 /* ── investigation stages ─────────────────────────────────── */
-.run{ font-family:var(--mono); font-size:11.5px; letter-spacing:.05em; color:var(--soft); line-height:2; margin:0 0 var(--s5); }
+.run{ font-family:var(--mono); font-size:11px; letter-spacing:.05em; color:var(--soft); line-height:2; margin:0 0 var(--s5); }
 .stage{
   position:relative; display:grid;
   grid-template-columns:minmax(0,1fr) minmax(0,1fr);
@@ -286,7 +292,7 @@ body.lock{ overflow:hidden; }
   .stage:nth-of-type(even)::before{ right:0; left:auto; }
 }
 .viz,.txt{ position:relative; z-index:1; }
-.step{ display:block; font-family:var(--mono); font-size:11.5px; letter-spacing:.2em; color:var(--brass); margin-bottom:12px; }
+.step{ display:block; font-family:var(--mono); font-size:11px; letter-spacing:.2em; color:var(--label); margin-bottom:12px; }
 .txt p{ font-size:1.06rem; line-height:1.68; margin:0; max-width:50ch; }
 
 .panel{ width:100%; height:auto; background:var(--raised); border:1px solid var(--edge); border-radius:12px; }
@@ -302,13 +308,13 @@ body.lock{ overflow:hidden; }
 .p-gauge line{ stroke:var(--brass); stroke-width:1.2; }
 .p-gauge circle{ fill:none; stroke:var(--brass); stroke-width:1.5; }
 .p-gauge text{ font-family:var(--mono); font-size:9px; fill:var(--brass); letter-spacing:.14em; }
-.fine{ font-family:var(--mono); font-size:10.5px; color:var(--faint); margin:var(--s4) 0 0; }
+.fine{ font-family:var(--mono); font-size:10px; color:var(--faint); margin:var(--s4) 0 0; }
 
 /* ── cards ────────────────────────────────────────────────── */
 .grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr)); gap:var(--s4); }
 .grid.one{ grid-template-columns:minmax(0,680px); }
 .card{
-  background:var(--raised); border:1px solid var(--edge); border-radius:14px; padding:var(--s4);
+  background:var(--raised); border:1px solid var(--edge); border-radius:12px; padding:var(--s4);
   display:flex; flex-direction:column;
   transition:transform .2s cubic-bezier(.2,.7,.3,1), border-color .2s ease, background .2s ease;
 }
@@ -318,12 +324,12 @@ body.lock{ overflow:hidden; }
 .state::before{ content:""; width:6px; height:6px; border-radius:50%; background:currentColor; }
 .state.on{ color:var(--green); border-color:rgba(79,178,134,.42); }
 .state.wip{ color:var(--brass); border-color:rgba(217,162,75,.42); }
-.eta{ font-family:var(--mono); font-size:10.5px; color:var(--faint); letter-spacing:.06em; }
+.eta{ font-family:var(--mono); font-size:10px; color:var(--faint); letter-spacing:.06em; }
 .card h3{ font-size:1.42rem; font-weight:600; letter-spacing:-.015em; margin-bottom:var(--s2); }
 .card p{ font-size:1rem; color:var(--soft); line-height:1.65; }
 .card p.top{ color:var(--text); }
 .pills{ display:flex; flex-wrap:wrap; gap:7px; margin:var(--s1) 0 var(--s3); }
-.card-f{ margin-top:auto; padding-top:var(--s2); border-top:1px solid var(--edge); font-family:var(--mono); font-size:10.5px; letter-spacing:.05em; color:var(--soft); display:flex; align-items:center; gap:7px; }
+.card-f{ margin-top:auto; padding-top:var(--s2); border-top:1px solid var(--edge); font-family:var(--mono); font-size:10px; letter-spacing:.05em; color:var(--soft); display:flex; align-items:center; gap:7px; }
 .card-f .icon{ font-size:13px; }
 
 /* ── parameters ───────────────────────────────────────────── */
@@ -332,22 +338,22 @@ body.lock{ overflow:hidden; }
 .cols .pill{ margin:0 7px 8px 0; display:inline-block; }
 .soonbox{ border:1px dashed var(--rule); border-radius:12px; padding:var(--s3) var(--s4); }
 .soonbox h3{ font-family:var(--mono); font-size:11px; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:var(--faint); margin-bottom:8px; }
-.soonbox p{ font-size:.96rem; color:var(--soft); margin-bottom:var(--s3); max-width:56ch; }
+.soonbox p{ font-size:1rem; color:var(--soft); margin-bottom:var(--s3); max-width:56ch; }
 .soonbox .pill{ margin:0 7px 8px 0; display:inline-block; }
 
 /* ── availability + contact ───────────────────────────────── */
 .when{ list-style:none; margin:var(--s3) 0 0; padding:0; max-width:54ch; }
 .when li{ display:grid; grid-template-columns:132px 1fr; gap:14px; align-items:baseline; padding:14px 0; border-top:1px solid var(--edge); }
 .when li:last-child{ border-bottom:1px solid var(--edge); }
-.when-k{ font-family:var(--mono); font-size:10.5px; letter-spacing:.13em; text-transform:uppercase; color:var(--brass); }
-.when-v{ font-size:.98rem; color:var(--soft); line-height:1.55; }
+.when-k{ font-family:var(--mono); font-size:10px; letter-spacing:.13em; text-transform:uppercase; color:var(--label); }
+.when-v{ font-size:1rem; color:var(--soft); line-height:1.55; }
 .when-v b{ color:var(--text); font-weight:600; }
 @media (max-width:620px){ .when li{ grid-template-columns:1fr; gap:4px; } }
 
 .reach{ display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-start; gap:var(--s5); }
 .reach-links{ display:flex; flex-wrap:wrap; gap:11px; padding-top:6px; }
 
-footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
+body > footer, .site-foot{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
 .foot{ display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:14px; font-family:var(--mono); font-size:11px; letter-spacing:.06em; color:var(--faint); }
 .foot-rail{ display:flex; gap:3px; font-size:16px; }
 
@@ -388,13 +394,15 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
 .gv-bar.bronze{ fill:var(--rule); }
 .gv-score{ font-family:var(--mono); font-size:9px; fill:var(--soft); }
 .gv-status{ font-family:var(--mono); font-size:8px; letter-spacing:.12em; fill:var(--faint); }
-.gv-status.veto{ fill:#C2708A; }
+.gv-status.veto{ fill:var(--danger); }
 .gv-status.gold{ fill:var(--brass); }
-.gv-strike{ stroke:#C2708A; stroke-width:1.4; }
+.gv-strike{ stroke:var(--danger); stroke-width:1.4; }
 .dia-pair{ display:grid; grid-template-columns:1fr; gap:var(--s3); margin-bottom:var(--s5); }
 
 /* numbered points — used where a stage has no diagram of its own */
-.points{ list-style:none; counter-reset:pt; margin:var(--s5) 0 0; padding:0; }
+.points{ list-style:none; counter-reset:pt; margin:var(--s4) 0 0; padding:0;
+  display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:var(--s5); }
+@media (max-width:900px){ .points{ grid-template-columns:1fr; } }
 .points li{ counter-increment:pt; position:relative; padding:var(--s4) 0 var(--s4) 64px; border-top:1px solid var(--edge); }
 .points li::before{
   content:counter(pt,decimal-leading-zero);
@@ -403,7 +411,7 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
   color:var(--brass); opacity:.75;
 }
 .points .step{ display:block; font-family:var(--mono); font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--brass); margin-bottom:10px; }
-.points p{ font-size:1.05rem; line-height:1.68; margin:0; max-width:64ch; color:var(--text); }
+.points p{ font-size:1.06rem; line-height:1.68; margin:0; max-width:64ch; color:var(--text); }
 @media (max-width:640px){
   .points li{ padding:var(--s3) 0 var(--s3) 44px; }
   .points li::before{ font-size:1.2rem; top:var(--s3); }
@@ -413,8 +421,8 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
 .stage[data-n="!"]::before{ content:none; }
 
 .thesis{
-  font-size:1.02rem; line-height:1.6; color:var(--soft);
-  max-width:46ch; margin:0 0 var(--s4);
+  font-size:1rem; line-height:1.6; color:var(--soft);
+  max-width:48ch; margin:0 0 var(--s3);
   padding-left:16px; border-left:2px solid var(--edge);
 }
 .band-label{
@@ -449,6 +457,114 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
 .rt-sub{ font-family:var(--mono); font-size:8px; fill:var(--soft); letter-spacing:.05em; }
 .rt-line{ stroke:var(--rule); stroke-width:1.1; fill:none; }
 .rt-foot{ font-family:var(--mono); font-size:8.5px; fill:var(--faint); letter-spacing:.11em; }
+
+/* ═══ UI pass: accent discipline, wrapping, contact ═══ */
+.points .step{ color:var(--label); }
+.points li::before{ color:var(--faint); opacity:1; }
+.verify-h span, .verify-h p{ color:var(--label); }
+.roles b{ color:var(--text); font-weight:500; }
+
+h1, h2, h3, .lede, .sub, .eyebrow{ text-wrap:balance; }
+p, li, figcaption{ text-wrap:pretty; }
+
+.reach{ display:grid; grid-template-columns:minmax(0,1fr) 260px; gap:var(--s5); align-items:start; }
+.reach-main .when{ margin-bottom:var(--s4); }
+.reach-links{ display:flex; flex-wrap:wrap; gap:12px; padding:0; }
+.reach-row{ display:flex; flex-wrap:wrap; gap:8px 22px; margin-top:var(--s3); }
+.chip-link{
+  display:inline-flex; align-items:center; gap:8px; padding:6px 0;
+  font-family:var(--mono); font-size:12px; letter-spacing:.02em; color:var(--soft);
+  background:none; border:0; border-bottom:1px solid transparent; cursor:pointer; text-decoration:none;
+}
+.chip-link:hover, .chip-link:focus-visible{ color:var(--bright); border-bottom-color:var(--rule); }
+.chip-link.ok{ color:var(--green); }
+.chip-link .icon{ width:15px; height:15px; }
+.reach-card{ margin:0; background:var(--raised); border:1px solid var(--edge); border-radius:12px; padding:14px; }
+.reach-card .portrait{ width:100%; height:auto; aspect-ratio:1/1; border-radius:6px; border:0; filter:none; }
+.reach-card figcaption{ display:flex; flex-direction:column; gap:3px; padding:14px 4px 4px; font-family:var(--mono); font-size:11px; letter-spacing:.04em; color:var(--soft); line-height:1.5; }
+.reach-card figcaption b{ font-family:var(--sans); font-size:1.06rem; font-weight:700; color:var(--bright); letter-spacing:-.01em; }
+.reach-card .mail{ color:var(--faint); word-break:break-all; }
+@media (max-width:760px){
+  .reach{ grid-template-columns:1fr; }
+  .reach-card{ max-width:260px; order:-1; }
+}
+
+/* ═══ UI pass: density ═══ */
+/* diagrams were rendering ~984px wide for a simple figure; cap them so
+   they read as illustrations rather than posters */
+.dia-pair .dia{ max-width:760px; }
+.stage{ padding:var(--s4) 0; }
+/* the lone in-build card was pinned to 680px and grew tall; let it use the column */
+#next .grid.one{ grid-template-columns:minmax(0,1fr); }
+#next .card p{ max-width:72ch; }
+#work .grid.one{ grid-template-columns:minmax(0,860px); }
+
+/* ═══ UI pass: verification fixes ═══ */
+@media (min-width:901px){ .only-narrow{ display:none !important; } }
+.q footer{ border-top:0; padding:0; margin-top:4px; }
+
+#stack .cols h3{ color:var(--label); }
+
+/* ═══ Project identity: one accent per project, lead project raised ═══ */
+:root{ --teal:#56C2CC; --teal-lt:#A9E4E9; }
+#agent { --acc:var(--brass); --acc-lt:var(--brass-lt); background:var(--raised); }
+#system{ --acc:var(--teal);  --acc-lt:var(--teal-lt); }
+
+/* the lead project now sits on the raised surface: keep its inner panels
+   visible, and lift the one token that falls below 4.5:1 there */
+#agent .dia{ background:var(--base); }
+#agent .num{ color:var(--label); }
+
+/* the accent carries each project's identity down its full length */
+#agent .eyebrow::before, #system .eyebrow::before{ background:var(--acc); }
+#agent .points li::before, #system .points li::before{ color:var(--acc); opacity:.85; }
+
+/* RAG diagrams switch from brass to teal */
+#system .pg-cap, #system .gv-cap, #system .pg-t.hot, #system .pg-note{ fill:var(--teal); }
+#system .pg-box.hot{ fill:rgba(86,194,204,.10); stroke:var(--teal); }
+#system .pg-brace{ stroke:var(--teal); }
+#system .gv-bar.gold{ fill:var(--teal); }
+#system .gv-status.gold{ fill:var(--teal); }
+
+/* RAG's primary action wears its own colour */
+#system .btn-fill{ background:var(--teal); border-color:var(--teal); color:var(--ink); }
+.n-rag b{ color:var(--teal); }
+
+/* cover block — each project's front page */
+.cover{
+  position:relative; margin:0 0 var(--s5);
+  padding:var(--s3) var(--s4) var(--s3);
+  border:1px solid var(--edge); border-radius:12px;
+  box-shadow:inset 0 2px 0 var(--acc);
+  transition:transform .25s cubic-bezier(.2,.7,.3,1), border-color .25s ease;
+}
+#agent .cover { background:var(--base); }
+#system .cover{ background:var(--raised); }
+.cover-top{ display:flex; flex-wrap:wrap; align-items:center; gap:10px 16px; margin-bottom:var(--s3); }
+.cover-date{ font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--label); }
+.cover-body{ display:grid; grid-template-columns:minmax(0,1fr) auto; gap:var(--s3) var(--s4); align-items:end; }
+.cover-fig b{
+  display:block; font-family:var(--mono); font-weight:500; line-height:1.05;
+  font-size:clamp(2.2rem,2.4vw + 1.2rem,3.1rem); letter-spacing:-.02em; color:var(--acc);
+}
+.cover-fig span{ display:block; margin-top:10px; max-width:46ch; font-size:1rem; line-height:1.55; color:var(--soft); }
+.cover-links{ display:flex; flex-wrap:wrap; gap:10px; justify-content:flex-end; }
+.cover-stack{
+  margin:var(--s3) 0 0; padding-top:14px; border-top:1px solid var(--edge);
+  font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+  line-height:1.8; color:var(--label);
+}
+@media (hover:hover) and (pointer:fine){
+  .cover:hover{ transform:translateY(-2px); border-color:var(--rule);
+    border-color:color-mix(in srgb, var(--acc) 42%, var(--edge)); }
+  #system .btn-fill:hover{ background:var(--teal-lt); border-color:var(--teal-lt); }
+}
+@media (prefers-reduced-motion:reduce){ .cover{ transition:none; } .cover:hover{ transform:none; } }
+@media (max-width:760px){
+  .cover{ padding:var(--s3); }
+  .cover-body{ grid-template-columns:1fr; }
+  .cover-links{ justify-content:flex-start; }
+}
 </style>
 
 </head>
@@ -478,7 +594,7 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
         <ul class="nav">
           <li><a href="#about">Thesis</a></li>
           <li><a href="#agent">Agent</a></li>
-          <li><a href="#system">RAG system</a></li>
+          <li><a href="#system">RAG</a></li>
           <li><a href="#investigation">Grounding</a></li>
           <li><a href="#work">Production</a></li>
           <li><a href="#next">In build</a></li>
@@ -500,7 +616,7 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
   <button class="sheet-x" id="sheetX" aria-label="Close menu"><svg class="icon"><use href="#i-x"/></svg></button>
   <a href="#about">Thesis</a>
   <a href="#agent">Agent</a>
-  <a href="#system">RAG system</a>
+  <a href="#system">RAG</a>
   <a href="#investigation">Grounding</a>
   <a href="#work">Production</a>
   <a href="#next">In build</a>
@@ -524,18 +640,18 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
         <h1 class="up a1">Raj Khatri</h1>
         <p class="lede up a1">I build AI systems that can show <em>where every answer came from</em> — and decline when nothing can support one.</p>
         <p class="thesis up a2">Applied AI engineer with an industrial engineering background. The habit came from a factory floor, where a number you haven't verified stops a production line.</p>
-        <p class="roles up a2">
-          <b>Backend Developer</b> · Voldebug Innovations — current<br>
-          <b>Data Analytics Intern</b> · Tata Motors, Pantnagar · Jul–Aug 2026<br>
+        <div class="acts up a3">
+          <a class="btn btn-fill" href="#agent">See the work</a>
+          <a class="btn btn-ghost" href="https://supplier-quality-agent.vercel.app" target="_blank" rel="noopener"><svg class="icon"><use href="#i-out"/></svg> Try the agent</a>
+          <a class="btn btn-ghost" href="resume.pdf?v=2" target="_blank" rel="noopener"><svg class="icon"><use href="#i-doc"/></svg> Résumé</a>
+          <a class="btn btn-ghost only-narrow" href="https://www.linkedin.com/in/rajkhatri2295/" target="_blank" rel="noopener"><svg class="icon"><use href="#i-in"/></svg> LinkedIn</a>
+        </div>
+        <p class="roles up a3">
+          <b>Backend Developer</b> · Voldebug Innovations — current<br>
+          <b>Data Analytics Intern</b> · Tata Motors, Pantnagar · Jul–Aug 2026<br>
           B.Tech Industrial &amp; Production Engineering · Class of 2027 · Uttarakhand, India<br>
           <b>Available:</b> full-time internship from Jan 2027 · full-time from Jun 2027
         </p>
-        <div class="acts up a3">
-          <a class="btn btn-fill" href="#system">See the system</a>
-          <a class="btn btn-ghost" href="resume.pdf?v=2" target="_blank" rel="noopener"><svg class="icon"><use href="#i-doc"/></svg> Résumé</a>
-          <a class="btn btn-ghost" href="https://www.linkedin.com/in/rajkhatri2295/" target="_blank" rel="noopener"><svg class="icon"><use href="#i-in"/></svg> LinkedIn</a>
-          <a class="btn btn-ghost" href="https://compliance-dashboard-omega-amber.vercel.app" target="_blank" rel="noopener"><svg class="icon"><use href="#i-out"/></svg> Live dashboard</a>
-        </div>
       </div>
       <div class="up a3"><svg class="hero-chart" viewBox="0 0 720 380" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <defs>
@@ -565,16 +681,17 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
     <div class="shell">
       <p class="band-label">From two deployed systems — sections 02 and 03</p>
       <div class="band-n">
-        <div class="n"><b>88–92%</b><span>Routing accuracy, pre-registered set</span></div>
+        <div class="n"><b>88–92%</b><span>Routing accuracy · pre‑registered</span></div>
         <div class="n"><b>5/5</b><span>Correct declines on absent entities</span></div>
-        <div class="n"><b>78%</b><span>Deploy footprint cut, verified</span></div>
-        <div class="n"><b>78→95%</b><span>Retrieval accuracy, prior system</span></div>
+        <div class="n"><b>476→107<small>MB</small></b><span>Deploy footprint, verified</span></div>
+        
         <div class="n"><b>4,725</b><span>Synthetic defect events modelled</span></div>
+        <div class="n n-rag"><b>78→95%</b><span>Retrieval accuracy · RAG</span></div>
       </div>
       <div class="kit">
-        <span class="pill">Python</span><span class="pill">SQL</span><span class="pill">FastAPI</span><span class="pill">RAG</span><span class="pill">ChromaDB</span><span class="pill">PostgreSQL</span><span class="pill">Next.js</span><span class="pill">Statistical Analysis</span>
+        <span class="pill">Python</span><span class="pill">FastAPI</span><span class="pill">Gemini</span><span class="pill">RAG</span><span class="pill">Agentic routing</span><span class="pill">pgvector</span><span class="pill">PostgreSQL</span><span class="pill">SQL</span>
         <span class="kit-sep">building with →</span>
-        <span class="pill next">Agents</span><span class="pill next">Tool use</span>
+        <span class="pill next">PyTorch</span><span class="pill next">LangGraph</span>
       </div>
     </div>
   </div>
@@ -584,15 +701,15 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
     <div class="shell">
       <div class="verify-h">
         <svg class="icon"><use href="#i-quote"/></svg>
-        <span>Two Tata Motors seniors, written independently — both describing the same trait an AI governance role runs on</span>
+        <span>Two Tata Motors seniors · written independently</span>
       </div>
       <div class="quotes">
         <blockquote class="q">
-          <p>"He had verified his own conclusion physically before presenting it, by measuring parts on the line. <em>That is not a habit most people arrive with.</em>"</p>
+          <p>“He had verified his own conclusion physically before presenting it, by measuring parts on the line. <em>That is not a habit most people arrive with.</em>”</p>
           <footer><b>Siddhesh Padate</b>Senior Manager, Tata Motors Limited<br>Mentor on the BIW investigation</footer>
         </blockquote>
         <blockquote class="q">
-          <p>"For an intern with no prior exposure to automotive quality systems, the speed at which he understood the process and the discipline of verifying his own conclusion were both notable. <em>He would do well in any analytical role where the work has to survive contact with the real world.</em>"</p>
+          <p>“For an intern with no prior exposure to automotive quality systems, the speed at which he understood the process and the discipline of verifying his own conclusion were both notable. <em>He would do well in any analytical role where the work has to survive contact with the real world.</em>”</p>
           <footer><b>Sunil Kumar</b>Manufacturing Operations, Tata Motors Limited<br>Senior on the line, outside Raj's reporting chain</footer>
         </blockquote>
       </div>
@@ -610,7 +727,7 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
           <h2>AI you can audit</h2>
         </div>
         <div class="copy">
-          <p>I work on <strong>retrieval and reasoning systems that can be audited</strong> — where the useful question isn't "did the model answer?" but "can we show where that answer came from, and was that source still valid?"</p>
+          <p>I work on <strong>retrieval and reasoning systems that can be audited</strong> — where the useful question isn’t “did the model answer?” but “can we show where that answer came from, and was that source still valid?”</p>
           <p>That framing didn't come from AI. It came from a weld shop at Tata Motors, where I traced a long-standing defect with regression analysis and then went and measured the parts by hand before presenting it, because a finding that hasn't survived contact with the physical world isn't a finding yet. A model that agrees with itself proves nothing.</p>
           <p>Applied to language models, that instinct produced two deployed systems. <strong>Source-Governed RAG</strong>: a system where a document's approval status and review date can veto an otherwise perfect semantic match, and every answer carries the provenance needed to defend it months later. Then a <strong>supplier quality agent</strong> that decides, per question, whether the answer lives in structured defect data, in corrective-action documents, in both, or in neither — and declines rather than guessing when it's the last one.</p>
           <p>The third piece is the unglamorous half — I build backend for a live product, so schema design, auth, migrations and deployment aren't theory. Most GenAI prototypes die on the way to production. I've shipped the part that usually kills them.</p>
@@ -629,16 +746,26 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
           <h2>An agent that decides, then declines</h2>
           <p class="sub">Supplier Quality Risk Agent — routes a supplier question to structured defect data, to corrective-action documents, to both, or to neither. The last option is the one that matters.</p>
         </div>
-        <p class="run">SEP 2026 · 16 DAYS ACROSS 11 PHASES · PYTHON · FASTAPI · GEMINI · POSTGRES + PGVECTOR<br>RENDER · NEON · VERCEL · SYNTHETIC DATA, NO PROPRIETARY RECORDS</p>
+        <div class="cover">
+          <div class="cover-top"><span class="state on">Live · Deployed</span><span class="cover-date">Sep 2026 · 16 days · 11 phases</span></div>
+          <div class="cover-body">
+            <div class="cover-fig"><b>88–92%</b><span>Routing accuracy on a pre‑registered 24-question set, reported across five runs</span></div>
+            <div class="cover-links">
+              <a class="btn btn-fill" href="https://supplier-quality-agent.vercel.app" target="_blank" rel="noopener">Try the agent</a>
+              <a class="btn btn-ghost" href="https://supplier-quality-agent.onrender.com/docs" target="_blank" rel="noopener"><svg class="icon"><use href="#i-out"/></svg> API docs</a>
+            </div>
+          </div>
+          <p class="cover-stack">Python · FastAPI · Gemini · Postgres + pgvector · Render · Neon · Vercel · synthetic data, no proprietary records</p>
+        </div>
 
         <div class="dia-pair"><svg class="dia" viewBox="0 0 560 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Routing diagram: an incoming question is routed to SQL, documents, both, or declined when neither source can support an answer">
   <text class="rt-cap" x="20" y="26">ONE DECISION PER QUERY &#183; ROUTE, THEN ANSWER</text>
   <rect class="rt-q" x="130.0" y="58" width="300" height="46" rx="7"/>
   <text class="rt-qt" x="280.0" y="86" text-anchor="middle">INCOMING QUESTION</text>
-  <rect class="rt-box" x="26.0" y="150" width="118" height="52" rx="7" stroke="#D9A24B"/><text class="rt-lab" x="85.0" y="172" text-anchor="middle" fill="#D9A24B">SQL</text><text class="rt-sub" x="85.0" y="189" text-anchor="middle">structured defect data</text><path class="rt-line" d="M280.0 112 C 280.0 132, 85.0 128, 85.0 148"/><rect class="rt-box" x="156.0" y="150" width="118" height="52" rx="7" stroke="#D9A24B"/><text class="rt-lab" x="215.0" y="172" text-anchor="middle" fill="#D9A24B">DOCS</text><text class="rt-sub" x="215.0" y="189" text-anchor="middle">8D corrective actions</text><path class="rt-line" d="M280.0 112 C 280.0 132, 215.0 128, 215.0 148"/><rect class="rt-box" x="286.0" y="150" width="118" height="52" rx="7" stroke="#D9A24B"/><text class="rt-lab" x="345.0" y="172" text-anchor="middle" fill="#D9A24B">BOTH</text><text class="rt-sub" x="345.0" y="189" text-anchor="middle">cross-checked</text><path class="rt-line" d="M280.0 112 C 280.0 132, 345.0 128, 345.0 148"/><rect class="rt-box" x="416.0" y="150" width="118" height="52" rx="7" stroke="#C2708A"/><text class="rt-lab" x="475.0" y="172" text-anchor="middle" fill="#C2708A">DECLINE</text><text class="rt-sub" x="475.0" y="189" text-anchor="middle">neither can support it</text><path class="rt-line" d="M280.0 112 C 280.0 132, 475.0 128, 475.0 148"/>
+  <rect class="rt-box"  x="26.0" y="150" width="118" height="52" rx="7" stroke="#3C4A6E"/><text class="rt-lab" x="85.0" y="172" text-anchor="middle" fill="#DDE5F5">SQL</text><text class="rt-sub" x="85.0" y="189" text-anchor="middle">defect records</text><path class="rt-line" d="M280.0 112 C 280.0 132, 85.0 128, 85.0 148"/><rect class="rt-box"  x="156.0" y="150" width="118" height="52" rx="7" stroke="#3C4A6E"/><text class="rt-lab" x="215.0" y="172" text-anchor="middle" fill="#DDE5F5">DOCS</text><text class="rt-sub" x="215.0" y="189" text-anchor="middle">8D reports</text><path class="rt-line" d="M280.0 112 C 280.0 132, 215.0 128, 215.0 148"/><rect class="rt-box"  x="286.0" y="150" width="118" height="52" rx="7" stroke="#3C4A6E"/><text class="rt-lab" x="345.0" y="172" text-anchor="middle" fill="#DDE5F5">BOTH</text><text class="rt-sub" x="345.0" y="189" text-anchor="middle">cross-checked</text><path class="rt-line" d="M280.0 112 C 280.0 132, 345.0 128, 345.0 148"/><rect class="rt-box"  x="416.0" y="150" width="118" height="52" rx="7" stroke="#C2708A"/><text class="rt-lab" x="475.0" y="172" text-anchor="middle" fill="#C2708A">DECLINE</text><text class="rt-sub" x="475.0" y="189" text-anchor="middle">no evidence</text><path class="rt-line" d="M280.0 112 C 280.0 132, 475.0 128, 475.0 148"/>
   <text class="rt-foot" x="280.0" y="232" text-anchor="middle">EVERY ROUTE LOGGED WITH REASONING, SQL, PASSAGES AND LATENCY</text>
 </svg>
-          <p class="figcap">Each query gets one routing decision before any tool runs, and the decision is surfaced above the answer so a reviewer reads the system's reasoning first. Four tool failure modes are modelled separately, so "this supplier does not exist" and "I could not check whether it exists" never collapse into the same empty result.</p>
+          <p class="figcap">Each query gets one routing decision before any tool runs, and the decision is surfaced above the answer so a reviewer reads the system's reasoning first. Four tool failure modes are modelled separately, so “this supplier does not exist” and “I could not check whether it exists” never collapse into the same empty result.</p>
         </div>
 
         <ol class="points">
@@ -667,11 +794,6 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
             <p>Deployment footprint cut <strong style="color:var(--text)">78%, from 476 MB to 107 MB</strong>, by migrating vector storage from ChromaDB to Postgres pgvector against a 512 MB platform limit — verified behaviourally by re-running the retrieval suite and confirming cosine distances matched to four decimal places. Routing and execution are split across separate endpoints so the decision surfaces seconds before tool results complete. Git history was audited for exposed secrets before open-sourcing.</p>
           </li>
         </ol>
-
-        <div class="acts" style="margin-top:var(--s4)">
-          <a class="btn btn-fill" href="https://supplier-quality-agent.vercel.app" target="_blank" rel="noopener">Try the agent</a>
-          <a class="btn btn-ghost" href="https://supplier-quality-agent.onrender.com/docs" target="_blank" rel="noopener"><svg class="icon"><use href="#i-out"/></svg> API docs</a>
-        </div>
       </div>
     </div>
   </section>
@@ -686,7 +808,18 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
           <h2>Governed RAG: an answer you can audit</h2>
           <p class="sub">Source-Governed RAG — a retrieval system over regulatory documents where a source's approval status and review date can veto an otherwise perfect semantic match.</p>
         </div>
-        <p class="run">AUG 2026 &nbsp;·&nbsp; DESIGN THROUGH DEPLOYMENT &nbsp;·&nbsp; PYTHON &nbsp;·&nbsp; FASTAPI &nbsp;·&nbsp; CHROMADB &nbsp;·&nbsp; POSTGRESQL &nbsp;·&nbsp; NEXT.JS<br>384-DIMENSIONAL SENTENCE EMBEDDINGS SERVED VIA ONNX RUNTIME &nbsp;·&nbsp; DEPLOYED ACROSS THREE SERVICES</p>
+        <div class="cover">
+          <div class="cover-top"><span class="state on">Live · Deployed</span><span class="cover-date">Aug 2026 · design through deployment</span></div>
+          <div class="cover-body">
+            <div class="cover-fig"><b>78→95%</b><span>Retrieval accuracy after replacing fixed-size chunking with document-structure chunking</span></div>
+            <div class="cover-links">
+              <a class="btn btn-fill" href="https://compliance-dashboard-omega-amber.vercel.app" target="_blank" rel="noopener">Open the dashboard</a>
+              <a class="btn btn-ghost" href="https://github.com/rajkhatri08/source-governed-rag" target="_blank" rel="noopener"><svg class="icon"><use href="#i-gh"/></svg> Backend</a>
+              <a class="btn btn-ghost" href="https://github.com/rajkhatri08/compliance-dashboard" target="_blank" rel="noopener"><svg class="icon"><use href="#i-gh"/></svg> Dashboard</a>
+            </div>
+          </div>
+          <p class="cover-stack">Python · FastAPI · ChromaDB · PostgreSQL · Next.js · MiniLM embeddings via ONNX runtime · three services</p>
+        </div>
 
         <div class="dia-pair"><svg class="dia" viewBox="0 0 560 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Six-stage query pipeline: ingest, embed, retrieve, govern, generate, audit — each stage independently testable">
   <text class="pg-cap" x="20" y="24">SIX-STAGE QUERY PIPELINE · EACH STAGE INDEPENDENTLY TESTABLE</text>
@@ -731,12 +864,6 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
             <p>First deploy failed: 2&nbsp;GB of GPU libraries on a 512&nbsp;MB instance. Swapping to an equivalent ONNX runtime cut the footprint by roughly <strong style="color:var(--text)">96%</strong>, verified behaviour-identical before shipping. Evaluation runtime went from <strong style="color:var(--text)">4.5 minutes to 2 seconds</strong> through result caching keyed to invalidate on configuration change. Audit logging moved off the filesystem to PostgreSQL, because ephemeral instances erase runtime writes on restart. Infrastructure failures are also separated from model refusals, so a provider outage can't corrupt an accuracy measurement.</p>
           </li>
         </ol>
-
-        <div class="acts" style="margin-top:var(--s4)">
-          <a class="btn btn-fill" href="https://compliance-dashboard-omega-amber.vercel.app" target="_blank" rel="noopener">Open the live dashboard</a>
-          <a class="btn btn-ghost" href="https://github.com/rajkhatri08/source-governed-rag" target="_blank" rel="noopener"><svg class="icon"><use href="#i-gh"/></svg> Backend</a>
-          <a class="btn btn-ghost" href="https://github.com/rajkhatri08/compliance-dashboard" target="_blank" rel="noopener"><svg class="icon"><use href="#i-gh"/></svg> Dashboard</a>
-        </div>
       </div>
     </div>
   </section>
@@ -920,7 +1047,7 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
     <div class="shell sec-in">
       <div class="num">08</div>
       <div class="reach">
-        <div>
+        <div class="reach-main">
           <p class="eyebrow">Contact</p>
           <h2 style="margin-bottom:16px">Let's talk</h2>
           <p class="sub">Open to <strong style="color:var(--text)">GenAI and applied AI engineering</strong> roles — retrieval systems, evaluation, and AI governance. Based in Uttarakhand, India — remote, hybrid, or on-site.</p>
@@ -928,19 +1055,21 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
             <li><span class="when-k">From Jan 2027</span><span class="when-v"><b>Full-time internship</b> — with scheduled university exam leave</span></li>
             <li><span class="when-k">From Jun 2027</span><span class="when-v"><b>Full-time</b> — immediate joiner on graduation</span></li>
           </ul>
-        </div>
-        <div class="reach-side">
-          <img class="portrait" src="me.jpg" width="440" height="440" loading="lazy" decoding="async"
-               alt="Raj Khatri">
           <div class="reach-links">
-          <a class="btn btn-fill" href="mailto:rajkhatrigbpuat@gmail.com"><svg class="icon"><use href="#i-mail"/></svg> rajkhatrigbpuat@gmail.com</a>
-          <a class="btn btn-ghost" href="tel:+917252091514"><svg class="icon"><use href="#i-phone"/></svg> +91 72520 91514</a>
-          <button class="btn btn-ghost" id="copyBtn" type="button" data-email="rajkhatrigbpuat@gmail.com"><svg class="icon" id="copyIcon"><use href="#i-copy"/></svg> <span id="copyTxt">Copy</span></button>
-          <a class="btn btn-ghost" href="https://www.linkedin.com/in/rajkhatri2295/" target="_blank" rel="noopener"><svg class="icon"><use href="#i-in"/></svg> LinkedIn</a>
-          <a class="btn btn-ghost" href="https://github.com/rajkhatri08" target="_blank" rel="noopener"><svg class="icon"><use href="#i-gh"/></svg> GitHub</a>
-          <a class="btn btn-ghost" href="resume.pdf?v=2" target="_blank" rel="noopener"><svg class="icon"><use href="#i-doc"/></svg> Résumé (PDF)</a>
+            <a class="btn btn-fill" href="mailto:rajkhatrigbpuat@gmail.com"><svg class="icon"><use href="#i-mail"/></svg> Email me</a>
+            <a class="btn btn-ghost" href="resume.pdf?v=2" target="_blank" rel="noopener"><svg class="icon"><use href="#i-doc"/></svg> Résumé (PDF)</a>
+          </div>
+          <div class="reach-row">
+            <a class="chip-link" href="tel:+917252091514"><svg class="icon"><use href="#i-phone"/></svg> +91 72520 91514</a>
+            <button class="chip-link" id="copyBtn" type="button" data-email="rajkhatrigbpuat@gmail.com"><svg class="icon" id="copyIcon"><use href="#i-copy"/></svg> <span id="copyTxt">Copy email</span></button>
+            <a class="chip-link" href="https://www.linkedin.com/in/rajkhatri2295/" target="_blank" rel="noopener"><svg class="icon"><use href="#i-in"/></svg> LinkedIn</a>
+            <a class="chip-link" href="https://github.com/rajkhatri08" target="_blank" rel="noopener"><svg class="icon"><use href="#i-gh"/></svg> GitHub</a>
           </div>
         </div>
+        <figure class="reach-card">
+          <img class="portrait" src="me.jpg?v=2" width="440" height="440" loading="lazy" decoding="async" alt="Raj Khatri">
+          <figcaption><b>Raj Khatri</b><span>GenAI engineering</span><span>Pantnagar, India</span><span class="mail">rajkhatrigbpuat@gmail.com</span></figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -1011,7 +1140,7 @@ footer{ border-top:1px solid var(--edge); padding:var(--s4) 0 var(--s5); }
         if (ico) { ico.innerHTML = '<use href="#i-ok"/>'; }
         setTimeout(function () {
           copyBtn.classList.remove('ok');
-          if (txt) { txt.textContent = 'Copy'; }
+          if (txt) { txt.textContent = 'Copy email'; }
           if (ico) { ico.innerHTML = '<use href="#i-copy"/>'; }
         }, 1800);
       }
