@@ -602,6 +602,7 @@ p, li, figcaption{ text-wrap:pretty; }
   font-size:clamp(1.6rem,1.6vw + 1rem,2.3rem); color:var(--acc); }
 .cover-chips span{ display:block; margin-top:9px; font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--label); line-height:1.5; }
 .cover-foot{ display:flex; flex-wrap:wrap; align-items:center; gap:12px 20px; }
+.cover-btns{ display:flex; flex-wrap:wrap; gap:10px; }
 .cover-note{ margin:0; font-family:var(--mono); font-size:11px; line-height:1.7; color:var(--soft); max-width:46ch; }
 
 .case{ margin-top:var(--s5); border-top:1px solid var(--edge); }
@@ -654,6 +655,21 @@ p, li, figcaption{ text-wrap:pretty; }
 @media (max-width:480px){ .flow{ grid-template-columns:1fr; } }
 
 .mark{ display:inline-block; padding:3px 0; }
+
+/* tablets: the three-button row left the headline column too narrow
+   (282px at 1024, 107px at 768), so the card stacks until there is room */
+@media (max-width:1060px){
+  .cover-body{ grid-template-columns:1fr; }
+  .cover-links{ justify-content:flex-start; }
+}
+/* small phones: three chips side by side overflowed below 390px, so each
+   becomes one row — number, then its label — at full size */
+@media (max-width:420px){
+  .cover-chips{ grid-template-columns:1fr; gap:8px; }
+  .cover-chips > div{ display:flex; align-items:baseline; gap:14px; padding:12px 16px; }
+  .cover-chips b{ font-size:1.7rem; min-width:5ch; }
+  .cover-chips span{ margin-top:0; font-size:11px; letter-spacing:.1em; }
+}
 </style>
 
 <script type="application/ld+json">
@@ -877,7 +893,10 @@ p, li, figcaption{ text-wrap:pretty; }
             <div><b>75.7%</b><span>right cause first</span></div>
           </div>
           <div class="cover-foot">
-            <a class="btn btn-fill" href="https://plant-health-rca-agent.vercel.app" target="_blank" rel="noopener">Live demo</a>
+            <div class="cover-btns">
+              <a class="btn btn-fill" href="https://plant-health-rca-agent.vercel.app" target="_blank" rel="noopener">Live demo</a>
+              <a class="btn btn-ghost" href="https://github.com/rajkhatri08/plant-health-rca-agent" target="_blank" rel="noopener"><svg class="icon"><use href="#i-gh"/></svg> Code</a>
+            </div>
             <p class="cover-note">Replays two plant episodes with precomputed diagnoses. The free server takes about a minute to wake up.</p>
           </div>
           <p class="cover-stack">Python · scikit-learn · LangGraph · Gemini · FastAPI</p>
