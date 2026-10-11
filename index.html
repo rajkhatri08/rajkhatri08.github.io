@@ -210,15 +210,6 @@ body.lock{ overflow:hidden; }
 .acts{ display:flex; flex-wrap:wrap; gap:12px; }
 
 .hero-chart{ width:100%; height:auto; overflow:visible; }
-.h-lim{ stroke:var(--rule); stroke-width:1.3; stroke-dasharray:7 7; opacity:.6; }
-.h-mid{ stroke-dasharray:2 8; opacity:.32; }
-.h-tag{ font-family:var(--mono); font-size:11px; fill:var(--faint); letter-spacing:.14em; }
-.h-trace{ fill:none; stroke:var(--text); stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; opacity:.82; }
-.h-dot{ fill:var(--text); opacity:.62; }
-.h-flag{ fill:var(--brass); }
-.h-flag-ring{ fill:none; stroke:var(--brass); stroke-width:1.6; opacity:.85; }
-.h-lead{ stroke:var(--brass); stroke-width:1.2; opacity:.7; }
-.h-note{ font-family:var(--mono); font-size:11px; fill:var(--brass); letter-spacing:.18em; }
 
 /* ── instrument band ──────────────────────────────────────── */
 .band{ background:var(--ink); border-top:1px solid var(--edge); border-bottom:1px solid var(--edge); }
@@ -670,6 +661,29 @@ p, li, figcaption{ text-wrap:pretty; }
   .cover-chips b{ font-size:1.7rem; min-width:5ch; }
   .cover-chips span{ margin-top:0; font-size:11px; letter-spacing:.1em; }
 }
+
+/* ═══ Hero chart: a sensor trace drifting across its limit (the plant agent's story) ═══ */
+.hz-grid{ stroke:var(--edge); stroke-width:1; opacity:.45; }
+.hz-limit{ stroke:var(--rule); stroke-width:1.4; stroke-dasharray:8 7; }
+.hz-tag{ font-family:var(--mono); font-size:19px; fill:var(--label); letter-spacing:.04em; }
+.hz-pre, .hz-post{ fill:none; stroke-linecap:round; stroke-linejoin:round; stroke-width:2.6; stroke-dasharray:1; stroke-dashoffset:0; }
+.hz-pre{ stroke:var(--soft); opacity:.9; }
+.hz-post{ stroke:var(--brass); }
+.hz-ring{ fill:none; stroke:var(--brass); stroke-width:1.8; opacity:.9; }
+.hz-dot{ fill:var(--brass); }
+.hz-note{ font-family:var(--mono); font-size:20px; fill:var(--brass); }
+@media (max-width:560px){
+  .hz-pre, .hz-post{ stroke-width:3.6; }
+  .hz-tag, .hz-note{ font-size:22px; }
+  .hero .eyebrow{ letter-spacing:.18em; }
+}
+@media (prefers-reduced-motion:no-preference){
+  .hz-pre { animation:hz-draw 1.5s cubic-bezier(.4,0,.2,1) .35s both; }
+  .hz-post{ animation:hz-draw .7s cubic-bezier(.4,0,.2,1) 1.8s both; }
+  .hz-mark{ animation:hz-in .45s ease-out 2.3s both; }
+}
+@keyframes hz-draw{ from{ stroke-dashoffset:1; } to{ stroke-dashoffset:0; } }
+@keyframes hz-in{ from{ opacity:0; } to{ opacity:1; } }
 </style>
 
 <script type="application/ld+json">
@@ -777,7 +791,7 @@ p, li, figcaption{ text-wrap:pretty; }
   <section class="hero">
     <div class="shell hero-in">
       <div>
-        <p class="eyebrow up">GenAI Engineering · Retrieval &amp; Governance</p>
+        <p class="eyebrow up">Applied AI · Industrial operations</p>
         <h1 class="up a1">Raj Khatri</h1>
         <p class="lede up a1">I build AI systems that can show <em>where every answer came from</em> — and decline when nothing can support one.</p>
         <p class="thesis up a2">Applied AI engineer with an industrial engineering background. The habit came from a factory floor, where a number you haven't verified stops a production line.</p>
@@ -794,25 +808,24 @@ p, li, figcaption{ text-wrap:pretty; }
           <b>Available:</b> full-time internship from Jan 2027 · full-time from Jun 2027
         </p>
       </div>
-      <div class="up a3"><svg class="hero-chart" viewBox="0 0 720 380" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <div class="up a3"><svg class="hero-chart" viewBox="0 0 720 350" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <defs>
-    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+    <radialGradient id="hz-glow" cx="50%" cy="50%" r="50%">
       <stop offset="0%" stop-color="#EFCB8C" stop-opacity=".5"/>
       <stop offset="100%" stop-color="#EFCB8C" stop-opacity="0"/>
     </radialGradient>
   </defs>
-  <line class="h-lim" x1="24" y1="124" x2="696" y2="124"/>
-  <line class="h-lim" x1="24" y1="300" x2="696" y2="300"/>
-  <line class="h-lim h-mid" x1="24" y1="212" x2="696" y2="212"/>
-  <text class="h-tag" x="28" y="116">UCL</text>
-  <text class="h-tag" x="28" y="318">LCL</text>
-  <circle cx="496" cy="88" r="52" fill="url(#glow)"/>
-  <polyline class="h-trace" points="40,232 97,206 154,248 211,214 268,258 325,198 382,240 439,172 496,88 553,246 610,214 667,236"/>
-  <circle class="h-dot" cx="40" cy="232" r="4"/><circle class="h-dot" cx="97" cy="206" r="4"/><circle class="h-dot" cx="154" cy="248" r="4"/><circle class="h-dot" cx="211" cy="214" r="4"/><circle class="h-dot" cx="268" cy="258" r="4"/><circle class="h-dot" cx="325" cy="198" r="4"/><circle class="h-dot" cx="382" cy="240" r="4"/><circle class="h-dot" cx="439" cy="172" r="4"/><circle class="h-dot" cx="553" cy="246" r="4"/><circle class="h-dot" cx="610" cy="214" r="4"/><circle class="h-dot" cx="667" cy="236" r="4"/>
-  <circle class="h-flag-ring" cx="496" cy="88" r="16"/>
-  <circle class="h-flag" cx="496" cy="88" r="6.5"/>
-  <line class="h-lead" x1="496" y1="70" x2="496" y2="44"/>
-  <text class="h-note" x="496" y="36" text-anchor="middle">OUT OF BAND</text>
+  <g><line class="hz-grid" x1="48" y1="16" x2="48" y2="334"/><line class="hz-grid" x1="96" y1="16" x2="96" y2="334"/><line class="hz-grid" x1="144" y1="16" x2="144" y2="334"/><line class="hz-grid" x1="192" y1="16" x2="192" y2="334"/><line class="hz-grid" x1="240" y1="16" x2="240" y2="334"/><line class="hz-grid" x1="288" y1="16" x2="288" y2="334"/><line class="hz-grid" x1="336" y1="16" x2="336" y2="334"/><line class="hz-grid" x1="384" y1="16" x2="384" y2="334"/><line class="hz-grid" x1="432" y1="16" x2="432" y2="334"/><line class="hz-grid" x1="480" y1="16" x2="480" y2="334"/><line class="hz-grid" x1="528" y1="16" x2="528" y2="334"/><line class="hz-grid" x1="576" y1="16" x2="576" y2="334"/><line class="hz-grid" x1="624" y1="16" x2="624" y2="334"/><line class="hz-grid" x1="672" y1="16" x2="672" y2="334"/><line class="hz-grid" x1="16" y1="40" x2="704" y2="40"/><line class="hz-grid" x1="16" y1="88" x2="704" y2="88"/><line class="hz-grid" x1="16" y1="136" x2="704" y2="136"/><line class="hz-grid" x1="16" y1="184" x2="704" y2="184"/><line class="hz-grid" x1="16" y1="232" x2="704" y2="232"/><line class="hz-grid" x1="16" y1="280" x2="704" y2="280"/><line class="hz-grid" x1="16" y1="328" x2="704" y2="328"/></g>
+  <line class="hz-limit" x1="16" y1="186" x2="628" y2="186"/>
+  <text class="hz-tag" x="640" y="192">limit</text>
+  <polyline class="hz-pre" pathLength="1" points="20.0,284.9 23.6,288.3 27.2,287.2 30.8,286.4 34.4,283.2 38.0,284.6 41.6,291.0 45.2,291.2 48.8,293.6 52.4,291.2 56.0,290.1 59.6,288.3 63.2,279.0 66.8,284.8 70.4,286.5 74.0,287.4 77.6,278.6 81.2,273.8 84.8,275.2 88.4,278.2 92.0,283.6 95.6,285.3 99.2,288.9 102.8,285.9 106.3,288.4 109.9,290.0 113.5,286.0 117.1,294.0 120.7,292.9 124.3,294.7 127.9,287.4 131.5,282.6 135.1,281.6 138.7,282.0 142.3,285.5 145.9,285.9 149.5,283.4 153.1,280.0 156.7,280.5 160.3,288.7 163.9,284.7 167.5,287.3 171.1,289.7 174.7,282.6 178.3,285.4 181.9,292.2 185.5,281.1 189.1,282.1 192.7,283.3 196.3,280.4 199.9,284.3 203.5,283.8 207.1,277.2 210.7,283.7 214.3,286.7 217.9,289.8 221.5,293.9 225.1,291.8 228.7,290.0 232.3,283.0 235.9,287.9 239.5,285.4 243.1,284.8 246.7,280.9 250.3,279.8 253.9,280.3 257.5,287.8 261.1,276.4 264.7,271.9 268.3,276.0 271.9,282.7 275.4,281.9 279.0,270.0 282.6,260.1 286.2,267.0 289.8,265.6 293.4,262.8 297.0,270.3 300.6,274.6 304.2,272.5 307.8,271.3 311.4,271.0 315.0,275.2 318.6,272.5 322.2,269.6 325.8,267.2 329.4,255.6 333.0,260.6 336.6,260.9 340.2,258.1 343.8,244.7 347.4,242.3 351.0,246.8 354.6,236.9 358.2,238.1 361.8,243.6 365.4,236.0 369.0,244.2 372.6,243.6 376.2,239.7 379.8,239.0 383.4,239.4 387.0,236.4 390.6,238.3 394.2,230.4 397.8,226.0 401.4,228.8 405.0,224.7 408.6,217.3 412.2,220.2 415.8,223.1 419.4,215.4 423.0,206.2 426.6,206.0 430.2,205.3 433.8,203.7 437.4,209.8 441.0,202.0 444.6,207.1 448.1,198.2 451.7,194.7 455.3,198.2 458.9,201.3 462.5,200.7 466.1,197.0 469.7,192.8 473.3,189.3 476.9,188.0 478.3,186.0"/>
+  <polyline class="hz-post" pathLength="1" points="478.3,186.0 480.5,182.8 484.1,180.8 487.7,180.0 491.3,176.2 494.9,176.6 498.5,175.3 502.1,180.3 505.7,175.1 509.3,168.4 512.9,164.3 516.5,163.0 520.1,165.6 523.7,160.7 527.3,160.2 530.9,165.2 534.5,147.4 538.1,142.6 541.7,144.8 545.3,145.3 548.9,143.6 552.5,138.6 556.1,139.4 559.7,137.3 563.3,131.7 566.9,140.8 570.5,136.0 574.1,128.7 577.7,126.1 581.3,123.4 584.9,122.0 588.5,108.8 592.1,110.5 595.7,117.0 599.3,110.0 602.9,109.8 606.5,112.8 610.1,112.8 613.7,114.2 617.2,99.5 620.8,96.1 624.4,93.1 628.0,94.6 631.6,96.5 635.2,80.1 638.8,86.8 642.4,78.7 646.0,82.9 649.6,75.0 653.2,77.3 656.8,82.3 660.4,78.3 664.0,76.6 667.6,77.3 671.2,73.6 674.8,69.2 678.4,72.6 682.0,71.0 685.6,62.8 689.2,70.3 692.8,56.0 696.4,56.0 700.0,49.7"/>
+  <g class="hz-mark">
+    <circle cx="478.3" cy="186.0" r="38" fill="url(#hz-glow)"/>
+    <circle class="hz-ring" cx="478.3" cy="186.0" r="13"/>
+    <circle class="hz-dot" cx="478.3" cy="186.0" r="6"/>
+    <text class="hz-note" x="706" y="230.0" text-anchor="end">alert → root cause</text>
+  </g>
 </svg></div>
     </div>
   </section>
